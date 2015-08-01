@@ -57,12 +57,36 @@
           <table id="table-large-columns" data-height="500" data-show-columns="true">
             <thead>
               <tr>
-                <th data-field="srcAll" data-switchable="false">全部车源</th>
-                <th data-field="srcNoAccident">无事故承诺</th>
-                <th data-field="srcOriginal">原厂质保</th>
-                <th data-field="srcBySeller">商家质保</th>
-                <th data-field="srcPersonal">个人车源</th>
-                <th data-field="column4" data-visible="false">Columns4</th>
+                <th data-field="ctime" data-align="center" >时间</th>
+                <th data-field="cityName" data-align="center" >城市</th>
+                <th data-field="pay_type" data-align="center" >类型</th>
+                
+                <th data-field="srcAll" data-align="center" >全部车源</th>
+                <th data-field="srcNoAccident" data-align="center" >无事故承诺</th>
+                <th data-field="srcOriginal" data-align="center" >原厂质保</th>
+                <th data-field="srcBySeller" data-align="center" >商家质保</th>
+                <th data-field="srcPersonal" data-align="center" >个人车源</th>
+                
+                <th data-field="age_1" data-align="center" data-visible="false">1年内</th>
+                <th data-field="age_1_3" data-align="center" data-visible="false">1-3年</th>
+                <th data-field="age_3_5" data-align="center" data-visible="false">3-5年</th>
+                <th data-field="age_5_8" data-align="center" data-visible="false">5-8年</th>
+                <th data-field="age_8" data-align="center" data-visible="false">8年以上</th>
+                
+                <th data-field="milage_1" data-align="center" data-visible="false">1万公里内</th>
+                <th data-field="milage_1_3" data-align="center" data-visible="false">1-3万公里</th>
+                <th data-field="milage_3_6" data-align="center" data-visible="false">3-6万公里</th>
+                <th data-field="milage_6_10" data-align="center" data-visible="false">6-10万公里</th>
+                <th data-field="milage_10_20" data-align="center" data-visible="false">10-20万公里</th>
+                <th data-field="milage_20" data-align="center" data-visible="false">20万公里以上</th>
+                
+                <th data-field="price_5" data-align="center" data-visible="false">5万元以下</th>
+                <th data-field="price_5_10" data-align="center" data-visible="false">5-10万元</th>
+                <th data-field="price_10_15" data-align="center" data-visible="false">10-15万元</th>
+                <th data-field="price_15_20" data-align="center" data-visible="false">15-20万元</th>
+                <th data-field="price_20_30" data-align="center" data-visible="false">20-30万元</th>
+                <th data-field="price_30_50" data-align="center" data-visible="false">30-50万元</th>
+                <th data-field="price_50" data-align="center" data-visible="false">50万元以上</th>
               </tr>
             </thead>
           </table>

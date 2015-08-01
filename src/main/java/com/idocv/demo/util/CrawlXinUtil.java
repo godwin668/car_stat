@@ -1,5 +1,7 @@
 package com.idocv.demo.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +19,7 @@ public class CrawlXinUtil {
 	
 	private static final String BASE_URL_XIN = "http://www.xin.com/";
 	private static final String DOM_SUM_CAR = ".car-upper span em";
+	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public static CarPo doCrawl(City city, PayTypeEnum payType) {
 		CarPo data = new CarPo();
@@ -143,7 +146,7 @@ public class CrawlXinUtil {
 	public static void log(String title, Object msg) {
 		System.out.println("-----------------------");
 		title = StringUtils.isBlank(title) ? "[INFO] - " : "[" + title + "] - ";
-		System.out.println(title + msg);
+		System.out.println("[" + df.format(new Date()) + "]" + title + msg);
 	}
 
 }
