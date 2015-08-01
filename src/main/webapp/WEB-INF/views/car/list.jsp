@@ -9,14 +9,14 @@
     <meta name="author" content="godwin">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Car list</title>
 
     <!-- CSS -->
     <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/bootstrap3/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/static/bootstrap_table/css/bootstrap-table.min.css" rel="stylesheet">
     <style type="text/css">
       body {
-        padding-top: 50px;
+        padding-top: 70px;
       }
     </style>
 
@@ -51,10 +51,12 @@
     </nav>
 
     <div class="container">
-
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    
+      <div class="container-fluid">
+        <div class="row">
+          <h1>Table</h1>
+          <table id="table-large-columns" data-height="400" data-show-columns="true"></table>
+        </div>
       </div>
 
     </div><!-- /.container -->
@@ -64,5 +66,7 @@
     ================================================== -->
     <script src="/static/jquery/js/jquery-1.11.3.min.js"></script>
     <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap_table/js/bootstrap-table.min.js"></script>
+    <script src="/static/car/js/list.js"></script>
   </body>
 </html>
