@@ -2,18 +2,18 @@ package com.idocv.demo.dao;
 
 import java.util.List;
 
-import com.idocv.demo.po.CarSumXin;
+import com.idocv.demo.po.CarPo;
 
 public interface CarDao {
 
-	public CarSumXin save(CarSumXin car);
+	public CarPo save(CarPo car);
 
 	public void delete(long id);
 
-	public void update(CarSumXin car);
+	public void update(CarPo car);
 
-	public CarSumXin get(long id);
+	public CarPo get(long id);
 
-	public List<CarSumXin> list(String query);
+	public List<CarPo> list(String query);
 
 }

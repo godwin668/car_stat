@@ -38,13 +38,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">优信车源数据</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="#">日期</a></li>
+            <li><a href="#about">城市</a></li>
+            <li><a href="#contact">类型</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -54,8 +54,18 @@
     
       <div class="container-fluid">
         <div class="row">
-          <h1>Table</h1>
-          <table id="table-large-columns" data-height="400" data-show-columns="true"></table>
+          <table id="table-large-columns" data-height="500" data-show-columns="true">
+            <thead>
+              <tr>
+                <th data-field="srcAll" data-switchable="false">全部车源</th>
+                <th data-field="srcNoAccident">无事故承诺</th>
+                <th data-field="srcOriginal">原厂质保</th>
+                <th data-field="srcBySeller">商家质保</th>
+                <th data-field="srcPersonal">个人车源</th>
+                <th data-field="column4" data-visible="false">Columns4</th>
+              </tr>
+            </thead>
+          </table>
         </div>
       </div>
 

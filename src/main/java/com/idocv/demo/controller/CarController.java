@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.idocv.demo.po.User;
-import com.idocv.demo.service.UserService;
+import com.idocv.demo.service.CarService;
+import com.idocv.demo.vo.CarVo;
 
 /**
  * Handles requests for the application home page.
@@ -30,78 +30,46 @@ public class CarController {
 	private static final ObjectMapper om = new ObjectMapper();
 	
 	@Resource
-	private UserService userService;
+	private CarService carService;
 
 	@RequestMapping(value = "")
 	public String page() {
 		return "car/list";
 	}
-
-	/**
-	 * Create user
-	 */
-	@RequestMapping(value = "create")
-	public String create(Model model,
-			@RequestParam(value = "name") String name,
-			@RequestParam(value = "age") int age) {
-		User user = new User();
-		user.setName(name);
-		user.setAge(age);
-		user = userService.save(user);
-		model.addAttribute("user", user);
-		return "user";
-	}
 	
 	/**
-	 * Delete user
+	 * Delete car
 	 */
 	@ResponseBody
 	@RequestMapping(value = "delete/{id}")
 	public Map<String, Object> delete(Model model, @PathVariable int id) {
-		userService.delete(id);
+		carService.delete(id);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("msg", "success");
 		return map;
 	}
 
 	/**
-	 * update user
-	 */
-	@ResponseBody
-	@RequestMapping(value = "update/{id}")
-	public User update(Model model, @PathVariable int id,
-			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "age", required = false) int age) {
-		User user = new User();
-		user.setId(id);
-		if (null != name) {
-			user.setName(name);
-		}
-		if (0 < age) {
-			user.setAge(age);
-		}
-		userService.update(user);
-		return user;
-	}
-
-	/**
-	 * get user
+	 * get car sum
 	 */
 	@ResponseBody
 	@RequestMapping(value = "get/{id}")
-	public User get(Model model, @PathVariable int id) {
-		User user = userService.get(id);
-		return user;
+	public CarVo get(Model model, @PathVariable int id) {
+		CarVo car = carService.get(id);
+		return car;
 	}
 
 	/**
-	 * list user
+	 * list car sum list
 	 */
 	@ResponseBody
-	@RequestMapping(value = "list")
-	public List<User> list(Model model) {
-		List<User> users = userService.list("");
-		return users;
+	@RequestMapping(value = "list.json")
+	public List<CarVo> listJson(Model model,
+			@RequestParam(value = "date", required = false) String date,
+			@RequestParam(value = "cityId", required = false) String cityId,
+			@RequestParam(value = "payType", required = false) String payType) {
+		List<CarVo> cars = carService.list(date, cityId, payType);
+		return cars;
 	}
 
 }
