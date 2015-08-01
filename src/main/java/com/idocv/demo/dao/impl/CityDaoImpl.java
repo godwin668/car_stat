@@ -2,6 +2,7 @@ package com.idocv.demo.dao.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import com.idocv.demo.dao.CityDao;
@@ -52,7 +53,9 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 
 	@Override
 	public List<City> list(String query) {
-		return (List<City>) getHibernateTemplate().find("from " + City.class.getSimpleName());
+		return (List<City>) getHibernateTemplate()
+				.find("from " + City.class.getSimpleName()
+						+ (StringUtils.isBlank(query) ? "" : " where " + query));
 	}
 
 }

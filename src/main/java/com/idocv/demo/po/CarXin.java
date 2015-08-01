@@ -45,6 +45,12 @@ public class CarXin implements Serializable {
 	private String pay_type;
 
 	/**
+	 * 全部车源
+	 */
+	@Column(name = "src_all", length = 30)
+	private int srcAll;
+
+	/**
 	 * 无事故承诺
 	 */
 	@Column(name = "src_no_accident", length = 30)
@@ -206,6 +212,14 @@ public class CarXin implements Serializable {
 
 	public void setPay_type(String pay_type) {
 		this.pay_type = pay_type;
+	}
+
+	public int getSrcAll() {
+		return srcAll;
+	}
+
+	public void setSrcAll(int srcAll) {
+		this.srcAll = srcAll;
 	}
 
 	public int getSrcNoAccident() {

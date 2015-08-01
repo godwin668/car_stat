@@ -36,6 +36,10 @@ public class City implements Serializable {
 	@Column(name = "listname", length = 255, nullable = false)
 	private String listname;
 
+	public City() {
+		super();
+	}
+
 	public City(String xinId, String province, String name, String listname) {
 		this.xinId = xinId;
 		this.province = province;
