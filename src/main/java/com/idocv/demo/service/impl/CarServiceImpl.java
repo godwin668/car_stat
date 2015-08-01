@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
@@ -30,8 +32,7 @@ public class CarServiceImpl implements CarService {
 	private CityDao cityDao;
 
 	private static final DateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd");
-	private static final DateFormat df = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss");
+	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Override
 	public void delete(long id) {
@@ -81,6 +82,21 @@ public class CarServiceImpl implements CarService {
 		}
 		
 		return convertPo2Vo(carDao.list(query));
+	}
+
+	@Override
+	public List<String> listDate() {
+		List<Date> dateList = carDao.listDate();
+		List<String> strList = new ArrayList<String>();
+		if (null == dateList || dateList.isEmpty()) {
+			return strList;
+		}
+		Set<String> set = new TreeSet<String>();
+		for (Date date : dateList) {
+			set.add(dfDate.format(date));
+		}
+		strList.addAll(set);
+		return strList;
 	}
 
 	public CarVo convertPo2Vo(CarPo po) {

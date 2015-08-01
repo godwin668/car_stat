@@ -12,4 +12,5 @@ public interface CarService {
 
 	public List<CarVo> list(String date, String cityId, String payType);
 
+	public List<String> listDate();
 }
