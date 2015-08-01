@@ -5,7 +5,7 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.select.Elements;
 
-import com.idocv.demo.po.CarXin;
+import com.idocv.demo.po.CarSumXin;
 import com.idocv.demo.po.City;
 import com.idocv.demo.type.PayTypeEnum;
 import com.idocv.demo.type.XinCheLingType;
@@ -18,8 +18,8 @@ public class CrawlXinUtil {
 	private static final String BASE_URL_XIN = "http://www.xin.com/";
 	private static final String DOM_SUM_CAR = ".car-upper span em";
 
-	public static CarXin doCrawl(City city, PayTypeEnum payType) {
-		CarXin data = new CarXin();
+	public static CarSumXin doCrawl(City city, PayTypeEnum payType) {
+		CarSumXin data = new CarSumXin();
 
 		// city
 		String cityListname = city.getListname();

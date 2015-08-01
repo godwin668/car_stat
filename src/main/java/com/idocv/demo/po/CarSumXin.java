@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
-@Table(name = "car_xin")
-public class CarXin implements Serializable {
+@Table(name = "car_sum_xin")
+public class CarSumXin implements Serializable {
 
 	/**
 	 * 

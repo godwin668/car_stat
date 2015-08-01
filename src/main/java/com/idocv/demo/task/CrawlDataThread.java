@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.idocv.demo.dao.CarDao;
-import com.idocv.demo.po.CarXin;
+import com.idocv.demo.po.CarSumXin;
 import com.idocv.demo.po.City;
 import com.idocv.demo.type.PayTypeEnum;
 import com.idocv.demo.util.CrawlXinUtil;
@@ -26,7 +26,7 @@ public class CrawlDataThread extends Thread {
 	@Override
 	public void run() {
 		logger.info("[Crawl Xin Task START] " + city.getName() + " - " + payType.getValue());
-		CarXin carXin = CrawlXinUtil.doCrawl(city, payType);
+		CarSumXin carXin = CrawlXinUtil.doCrawl(city, payType);
 		carDao.save(carXin);
 		logger.info("[Crawl Xin Task DONE] " + city.getName() + " - " + payType.getValue() + " - " + carXin);
 	}

@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.idocv.demo.dao.CarDao;
-import com.idocv.demo.po.CarXin;
+import com.idocv.demo.po.CarSumXin;
 import com.idocv.demo.po.City;
 
 @Repository
 public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 
 	@Override
-	public CarXin save(CarXin car) {
+	public CarSumXin save(CarSumXin car) {
 		long id = (long) getHibernateTemplate().save(car);
 		car.setId(id);
 		return car;
@@ -20,20 +20,20 @@ public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 
 	@Override
 	public void delete(long id) {
-		CarXin car = get(id);
+		CarSumXin car = get(id);
 		getHibernateTemplate().delete(car);
 		getHibernateTemplate().flush();
 	}
 
 	@Override
-	public void update(CarXin car) {
+	public void update(CarSumXin car) {
 		getHibernateTemplate().update(car);
 		getHibernateTemplate().flush();
 	}
 
 	@Override
-	public CarXin get(long id) {
-		List<CarXin> list = (List<CarXin>) getHibernateTemplate().find("from " + CarXin.class.getSimpleName() + " where id=?", id);
+	public CarSumXin get(long id) {
+		List<CarSumXin> list = (List<CarSumXin>) getHibernateTemplate().find("from " + CarSumXin.class.getSimpleName() + " where id=?", id);
 		if (null != list && !list.isEmpty()) {
 			return list.get(0);
 		} else {
@@ -42,8 +42,8 @@ public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 	}
 
 	@Override
-	public List<CarXin> list(String query) {
-		return (List<CarXin>) getHibernateTemplate().find("from " + CarXin.class.getSimpleName());
+	public List<CarSumXin> list(String query) {
+		return (List<CarSumXin>) getHibernateTemplate().find("from " + CarSumXin.class.getSimpleName());
 	}
 
 }
