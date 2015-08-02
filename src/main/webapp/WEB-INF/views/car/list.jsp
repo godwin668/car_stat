@@ -48,25 +48,24 @@
             <li><a href="#contact">类型</a></li>
             -->
             <!-- 日期下拉 -->
-            <li class="dropdown date-dropdown-container">
+            <li class="dropdown nav-dropdown-container nav-dropdown-container-date">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">日期 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
+              <ul class="dropdown-menu pre-scrollable">
+                <li class="active"><a href="#">全部</a></li>
               </ul>
             </li>
             <!-- 城市下拉 -->
-            <li class="dropdown city-dropdown-container">
+            <li class="dropdown nav-dropdown-container nav-dropdown-container-city">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">城市 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
+              <ul class="dropdown-menu pre-scrollable">
+                <li class="active"><a href="#">全部</a></li>
               </ul>
             </li>
             <!-- 类型下拉 -->
-            <li class="dropdown type-dropdown-container">
+            <li class="dropdown nav-dropdown-container nav-dropdown-container-type">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">类型 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu pre-scrollable">
+                <li class="active"><a href="#">全部</a></li>
                 <li><a href="#">买车</a></li>
                 <li><a href="#">付半价</a></li>
               </ul>

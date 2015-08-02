@@ -10,14 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.idocv.demo.po.City;
 import com.idocv.demo.service.CarService;
 import com.idocv.demo.service.CityService;
 import com.idocv.demo.vo.CarVo;
@@ -72,8 +70,8 @@ public class CarController {
 	@RequestMapping(value = "list.json")
 	public List<CarVo> listJson(Model model,
 			@RequestParam(value = "date", required = false) String date,
-			@RequestParam(value = "cityId", required = false) String cityId,
-			@RequestParam(value = "payType", required = false) String payType) {
+			@RequestParam(value = "city", required = false) String cityId,
+			@RequestParam(value = "type", required = false) String payType) {
 		List<CarVo> cars = carService.list(date, cityId, payType);
 		return cars;
 	}
@@ -86,23 +84,6 @@ public class CarController {
 	public List<String> dateListJson(Model model) {
 		List<String> dateList = carService.listDate();
 		return dateList;
-	}
-
-	/**
-	 * city list
-	 */
-	@ResponseBody
-	@RequestMapping(value = "cityList.json")
-	public Map<String, String> cityListJson(Model model) {
-		List<City> cityList = cityService.list("");
-		Map<String, String> cityMap = new HashMap<String, String>();
-		if (CollectionUtils.isEmpty(cityList)) {
-			return cityMap;
-		}
-		for (City city : cityList) {
-			cityMap.put(city.getXinId(), city.getName());
-		}
-		return cityMap;
 	}
 
 }

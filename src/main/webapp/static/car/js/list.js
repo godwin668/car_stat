@@ -1,3 +1,50 @@
-$('#table-large-columns').bootstrapTable({
-    url: '/car/list.json'
+$(document).ready(function(){
+	// load data
+	$('#table-large-columns').bootstrapTable({
+	    url: '/car/list.json',
+	    silent: true
+	});
+	
+	
+	// title
+	var newUrl = '/car/list.json?payType=s';
+	$('#table-large-columns').bootstrapTable('refresh', {silent: true, url: newUrl});
+	
+	// date
+	$.get('/car/dateList.json', {}, function(data, status) {
+		if ('success' === status) {
+			console.log('dateList: ' + JSON.stringify(data));
+			for (var i = 0; i < data.length; i++) {
+				$('.nav-dropdown-container-date ul').append('<li><a href="#" data-value="' + data[i] + '">' + data[i] + '</a></li>');
+			}
+			bindClickEvent();
+		}
+	});
+	
+	// city
+	$.get('/city/list.json', {}, function(data, status) {
+		if ('success' === status) {
+			console.log('cityList: ' + JSON.stringify(data));
+			for (var city in data) {
+				$('.nav-dropdown-container-city ul').append('<li><a href="#" data-value="' + city + '" >' + data[city] + '</a></li>');
+			}
+			bindClickEvent();
+		}
+	});
+	
+	// action
+	bindClickEvent();
 });
+
+function bindClickEvent() {
+	$('.nav-dropdown-container ul li').click(function() {
+		// active class
+		$(this).parent().children().removeClass('active');
+		$(this).addClass('active');
+		
+		// query
+		var activeDate = $('.nav-dropdown-container-date ul li.active');
+		var valueDate = $(activeDate).children('a').attr('data-value');
+		console.log('valueDate: ' + valueDate);
+	});
+}

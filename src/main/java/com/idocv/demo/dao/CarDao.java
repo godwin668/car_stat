@@ -15,7 +15,7 @@ public interface CarDao {
 
 	public CarPo get(long id);
 
-	public List<CarPo> list(String query);
+	public List<CarPo> list(String whereClause);
 
 	public List<Date> listDate();
 
