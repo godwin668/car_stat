@@ -52,7 +52,7 @@ public class CarServiceImpl implements CarService {
 				Date startDate = dfDate.parse(date);
 				Date endDate = DateUtils.addDays(startDate, 1);
 				// append date to query
-				conditions.add("ctime>" + startDate + " and ctime<" + endDate);
+				conditions.add("ctime>'" + df.format(startDate) + "' and ctime<'" + df.format(endDate) + "'");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

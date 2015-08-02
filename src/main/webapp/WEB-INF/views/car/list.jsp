@@ -66,8 +66,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">类型 <span class="caret"></span></a>
               <ul class="dropdown-menu pre-scrollable">
                 <li class="active"><a href="#">全部</a></li>
-                <li><a href="#">买车</a></li>
-                <li><a href="#">付半价</a></li>
+                <li><a href="#" data-value="s">买车</a></li>
+                <li><a href="#" data-value="h">付半价</a></li>
               </ul>
             </li>
           </ul>

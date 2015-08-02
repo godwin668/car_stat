@@ -5,11 +5,6 @@ $(document).ready(function(){
 	    silent: true
 	});
 	
-	
-	// title
-	var newUrl = '/car/list.json?payType=s';
-	$('#table-large-columns').bootstrapTable('refresh', {silent: true, url: newUrl});
-	
 	// date
 	$.get('/car/dateList.json', {}, function(data, status) {
 		if ('success' === status) {
@@ -43,8 +38,10 @@ function bindClickEvent() {
 		$(this).addClass('active');
 		
 		// query
-		var activeDate = $('.nav-dropdown-container-date ul li.active');
-		var valueDate = $(activeDate).children('a').attr('data-value');
-		console.log('valueDate: ' + valueDate);
+		var dateValue = $('.nav-dropdown-container-date ul li.active').children('a').attr('data-value');
+		var cityValue = $('.nav-dropdown-container-city ul li.active').children('a').attr('data-value');
+		var typeValue = $('.nav-dropdown-container-type ul li.active').children('a').attr('data-value');
+		var newUrl = '/car/list.json?date=' + dateValue + '&city=' + cityValue + '&type=' + typeValue;
+		$('#table-large-columns').bootstrapTable('refresh', {silent: true, url: newUrl});
 	});
 }
