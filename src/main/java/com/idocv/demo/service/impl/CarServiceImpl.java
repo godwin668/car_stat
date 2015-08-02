@@ -3,6 +3,7 @@ package com.idocv.demo.service.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -91,7 +92,7 @@ public class CarServiceImpl implements CarService {
 		if (null == dateList || dateList.isEmpty()) {
 			return strList;
 		}
-		Set<String> set = new TreeSet<String>();
+		Set<String> set = new TreeSet<String>(Collections.reverseOrder());
 		for (Date date : dateList) {
 			set.add(dfDate.format(date));
 		}
