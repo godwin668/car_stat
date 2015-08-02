@@ -22,6 +22,9 @@
 	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+	<!-- Java属性注入 -->
+	<context:property-placeholder location="classpath:conf.properties" />
+	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 	<task:annotation-driven />

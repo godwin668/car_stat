@@ -35,7 +35,7 @@ public class CrawlDataTask {
 	ExecutorService executorService = Executors.newFixedThreadPool(10);
 
 	// 0 0 22 * * ?
-	@Scheduled(cron = "0 0 22 * * ?")
+	@Scheduled(cron = "${task.crawl.xin.cron}")
 	public void run() {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.warn("[Crawl Dta Task] " + df.format(new Date()));

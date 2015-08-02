@@ -38,13 +38,39 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">优信车源数据</a>
+          <a class="navbar-brand" href="#">优信车源数据统计</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
+            <!-- 标题栏
             <li class="active"><a href="#">日期</a></li>
             <li><a href="#about">城市</a></li>
             <li><a href="#contact">类型</a></li>
+            -->
+            <!-- 日期下拉 -->
+            <li class="dropdown date-dropdown-container">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">日期 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+              </ul>
+            </li>
+            <!-- 城市下拉 -->
+            <li class="dropdown city-dropdown-container">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">城市 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+              </ul>
+            </li>
+            <!-- 类型下拉 -->
+            <li class="dropdown type-dropdown-container">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">类型 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">买车</a></li>
+                <li><a href="#">付半价</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
