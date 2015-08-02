@@ -53,9 +53,7 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 
 	@Override
 	public List<City> list(String query) {
-		return (List<City>) getHibernateTemplate()
-				.find("from " + City.class.getSimpleName()
-						+ (StringUtils.isBlank(query) ? "" : " where " + query));
+		return (List<City>) getHibernateTemplate().find("from " + City.class.getSimpleName() + (StringUtils.isBlank(query) ? "" : " where " + query));
 	}
 
 }
