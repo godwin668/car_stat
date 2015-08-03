@@ -43,6 +43,6 @@
 
 ## 版权
 
-* Opensource
+* Open Source & Free
 * Powered by godwin668@gmail.com
 
