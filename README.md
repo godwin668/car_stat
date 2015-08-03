@@ -34,4 +34,12 @@
 ## 参考
 
 * Spring: http://docs.spring.io/spring/docs/current/spring-framework-reference/html/
+* Bootstrap(en): http://getbootstrap.com
+* Bootstrap(中): http://www.bootcss.com/
 * bootstrap-table: http://bootstrap-table.wenzhixin.net.cn
+
+## 版权
+
+* Opensource
+* Powered by godwin668@gmail.com
+
