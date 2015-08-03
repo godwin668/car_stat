@@ -4,10 +4,11 @@
 
 ## 部署步骤
 
-* 根据conf.properties配置文件，在MySQL中创建对应数据库和设置权限；
-* mvn clean package打包项目；
-* 打包后，将target下项目文件夹复制到tomcat服务下；
-* 重启tomcat。
+* 根据conf.properties配置文件，在MySQL中创建对应数据库和设置权限
+* 导入城市数据city.sql
+* mvn clean package打包项目
+* 打包后，将target下项目文件夹复制到tomcat服务下
+* 重启tomcat
 
 ## 注意事项
 
