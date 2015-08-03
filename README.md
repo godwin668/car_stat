@@ -16,9 +16,9 @@
 
 ## 技术框架
 
-* 后台使用SpringMVC + Hibernate
+* 后台使用SpringMVC 4.1 + Hibernate 5.0
 * 数据使用MySQL
-* 前端Bootstrap3
+* 前端Bootstrap 3
 * 表格bootstrap-table
 
 ## 后期优化
