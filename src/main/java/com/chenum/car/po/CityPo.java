@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
-@Table(name = "tb_city")
+@Table(name = "city")
 public class CityPo implements Serializable {
 	/**
 	 * 

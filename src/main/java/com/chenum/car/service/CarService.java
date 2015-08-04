@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.chenum.car.vo.CarXinVo;
 
-public interface CarXinService {
+public interface CarService {
 
 	public void delete(long id);
 

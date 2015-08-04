@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.chenum.car.service.CarXinService;
+import com.chenum.car.service.CarService;
 import com.chenum.car.service.CityService;
 import com.chenum.car.vo.CarXinVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +31,7 @@ public class CarXinController {
 	private static final ObjectMapper om = new ObjectMapper();
 	
 	@Resource
-	private CarXinService carService;
+	private CarService carService;
 
 	@Resource
 	private CityService cityService;

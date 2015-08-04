@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
-@Table(name = "tb_car_xin")
-public class CarXinPo implements Serializable {
+@Table(name = "car")
+public class CarPo implements Serializable {
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class CarXinPo implements Serializable {
 	private Date ctime;
 
 	/**
-	 * Xin 城市ID
+	 * 城市ID - xin
 	 */
 	@Column(name = "city_id", length = 255, nullable = false)
 	private String cityId;

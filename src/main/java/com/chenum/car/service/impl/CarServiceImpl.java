@@ -16,18 +16,18 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
 
-import com.chenum.car.dao.CarXinDao;
+import com.chenum.car.dao.CarDao;
 import com.chenum.car.dao.CityDao;
-import com.chenum.car.po.CarXinPo;
+import com.chenum.car.po.CarPo;
 import com.chenum.car.po.CityPo;
-import com.chenum.car.service.CarXinService;
+import com.chenum.car.service.CarService;
 import com.chenum.car.vo.CarXinVo;
 
 @Service
-public class CarXinServiceImpl implements CarXinService {
+public class CarServiceImpl implements CarService {
 
 	@Resource
-	private CarXinDao carDao;
+	private CarDao carDao;
 
 	@Resource
 	private CityDao cityDao;
@@ -100,13 +100,13 @@ public class CarXinServiceImpl implements CarXinService {
 		return strList;
 	}
 
-	public CarXinVo convertPo2Vo(CarXinPo po) {
-		List<CarXinPo> poList = new ArrayList<CarXinPo>();
+	public CarXinVo convertPo2Vo(CarPo po) {
+		List<CarPo> poList = new ArrayList<CarPo>();
 		poList.add(po);
 		return convertPo2Vo(poList).get(0);
 	}
 
-	public List<CarXinVo> convertPo2Vo(List<CarXinPo> poList) {
+	public List<CarXinVo> convertPo2Vo(List<CarPo> poList) {
 		List<CarXinVo> voList = new ArrayList<CarXinVo>();
 		if (null == poList || poList.isEmpty()) {
 			return voList;
@@ -120,7 +120,7 @@ public class CarXinServiceImpl implements CarXinService {
 			}
 		}
 
-		for (CarXinPo po : poList) {
+		for (CarPo po : poList) {
 			CarXinVo vo = new CarXinVo();
 			vo.setId(po.getId());
 			vo.setCtime(df.format(po.getCtime()));

@@ -1,11 +1,11 @@
 package com.chenum.car.type;
 
 public enum PayXinEnum {
-	
+
 	SALE("s"), HALF("h");
 
 	private String value;
-	
+
 	private PayXinEnum(String value) {
 		this.value = value;
 	}
@@ -17,7 +17,7 @@ public enum PayXinEnum {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
+
 	@Override
 	public String toString() {
 		return value;

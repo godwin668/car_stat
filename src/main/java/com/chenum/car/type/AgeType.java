@@ -2,21 +2,20 @@ package com.chenum.car.type;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-public enum MilageXinType {
+public enum AgeType {
 	
-	// "http://www.xin.com/{city}/{s}/o2a10i1v1k{licheng}/";
+	// http://www.xin.com/beijing/s/o2a10i1v1r0-1/
 
-	KM_0_1("1万公里内", "0-1"),
-	KM_1_3("1-3万公里", "1-3"),
-	KM_3_6("3-6万公里", "3-6"),
-	KM_6_10("6-10万公里", "6-10"),
-	KM_10_20("10-20万公里", "10-20"),
-	KM_20_("20万公里以上", "20-");
+	YEAR_0_1("一年内", "0-1"),
+	YEAR_1_3("1-3年", "1-3"),
+	YEAR_3_5("3-5年", "3-5"),
+	YEAR_5_8("5-8年", "5-8"),
+	YEAR_8_("8年以上", "8-");
 	
 	private String id;
 	private String name;
 	
-	private MilageXinType(String name, String id) {
+	private AgeType(String name, String id) {
 		this.name = name;
 		this.id = id;
 	}
@@ -39,12 +38,12 @@ public enum MilageXinType {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.reflectionToString(this);
+		return ReflectionToStringBuilder.toString(this);
 	}
 
 	public static void main(String[] args) {
-		MilageXinType[] types = MilageXinType.values();
-		for (MilageXinType type : types) {
+		AgeType[] types = AgeType.values();
+		for (AgeType type : types) {
 			System.out.println(type);
 		}
 	}

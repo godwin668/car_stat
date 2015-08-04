@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.chenum.car.dao.CarXinDao;
+import com.chenum.car.dao.CarDao;
 import com.chenum.car.dao.CityDao;
 import com.chenum.car.po.CityPo;
 import com.chenum.car.type.PayXinEnum;
@@ -30,7 +30,7 @@ public class CrawlXinTask {
 	private CityDao cityDao;
 
 	@Resource
-	private CarXinDao carDao;
+	private CarDao carDao;
 
 	ExecutorService executorService = Executors.newFixedThreadPool(10);
 
