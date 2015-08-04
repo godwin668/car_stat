@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.idocv.car.dao.CityDao;
-import com.idocv.car.po.City;
+import com.chenum.car.dao.CityDao;
+import com.chenum.car.po.City;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:beans.xml",
