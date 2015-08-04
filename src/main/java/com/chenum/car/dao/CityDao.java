@@ -2,20 +2,20 @@ package com.chenum.car.dao;
 
 import java.util.List;
 
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 
 public interface CityDao {
 
-	public City save(City city);
+	public CityPo save(CityPo city);
 
 	public void delete(long id);
 
-	public void update(City city);
+	public void update(CityPo city);
 
-	public City get(long id);
+	public CityPo get(long id);
 	
-	public City getByXinId(String xinId);
+	public CityPo getByXinId(String xinId);
 
-	public List<City> list(String query);
+	public List<CityPo> list(String query);
 
 }

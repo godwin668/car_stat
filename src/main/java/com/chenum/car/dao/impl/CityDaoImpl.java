@@ -6,13 +6,13 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import com.chenum.car.dao.CityDao;
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 
 @Repository
 public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 
 	@Override
-	public City save(City city) {
+	public CityPo save(CityPo city) {
 		getHibernateTemplate().save(city);
 		// getHibernateTemplate().flush();
 		return city;
@@ -20,20 +20,20 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 
 	@Override
 	public void delete(long id) {
-		City city = get(id);
+		CityPo city = get(id);
 		getHibernateTemplate().delete(city);
 		getHibernateTemplate().flush();
 	}
 
 	@Override
-	public void update(City city) {
+	public void update(CityPo city) {
 		getHibernateTemplate().update(city);
 		getHibernateTemplate().flush();
 	}
 
 	@Override
-	public City get(long id) {
-		List<City> list = (List<City>) getHibernateTemplate().find("from " + City.class.getSimpleName() + " where id=?", id);
+	public CityPo get(long id) {
+		List<CityPo> list = (List<CityPo>) getHibernateTemplate().find("from " + CityPo.class.getSimpleName() + " where id=?", id);
 		if (null != list && !list.isEmpty()) {
 			return list.get(0);
 		} else {
@@ -42,8 +42,8 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 	}
 
 	@Override
-	public City getByXinId(String xinId) {
-		List<City> list = (List<City>) getHibernateTemplate().find("from " + City.class.getSimpleName() + " where xin_id=?", xinId);
+	public CityPo getByXinId(String xinId) {
+		List<CityPo> list = (List<CityPo>) getHibernateTemplate().find("from " + CityPo.class.getSimpleName() + " where xin_id=?", xinId);
 		if (null != list && !list.isEmpty()) {
 			return list.get(0);
 		} else {
@@ -52,8 +52,8 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 	}
 
 	@Override
-	public List<City> list(String query) {
-		return (List<City>) getHibernateTemplate().find("from " + City.class.getSimpleName() + (StringUtils.isBlank(query) ? "" : " where " + query));
+	public List<CityPo> list(String query) {
+		return (List<CityPo>) getHibernateTemplate().find("from " + CityPo.class.getSimpleName() + (StringUtils.isBlank(query) ? "" : " where " + query));
 	}
 
 }

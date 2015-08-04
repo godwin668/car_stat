@@ -13,7 +13,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
 @Table(name = "city")
-public class City implements Serializable {
+public class CityPo implements Serializable {
 	/**
 	 * 
 	 */
@@ -36,11 +36,11 @@ public class City implements Serializable {
 	@Column(name = "listname", length = 255, nullable = false)
 	private String listname;
 
-	public City() {
+	public CityPo() {
 		super();
 	}
 
-	public City(String xinId, String province, String name, String listname) {
+	public CityPo(String xinId, String province, String name, String listname) {
 		this.xinId = xinId;
 		this.province = province;
 		this.name = name;

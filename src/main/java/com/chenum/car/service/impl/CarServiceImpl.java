@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import com.chenum.car.dao.CarDao;
 import com.chenum.car.dao.CityDao;
 import com.chenum.car.po.CarPo;
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 import com.chenum.car.service.CarService;
 import com.chenum.car.vo.CarVo;
 
@@ -60,7 +60,7 @@ public class CarServiceImpl implements CarService {
 		}
 
 		if (null != cityId && cityId.matches("\\d+")) {
-			City city = cityDao.getByXinId(cityId);
+			CityPo city = cityDao.getByXinId(cityId);
 			if (null != city) {
 				// append city to query
 				conditions.add("city_id='" + city.getXinId() + "'");
@@ -112,10 +112,10 @@ public class CarServiceImpl implements CarService {
 			return voList;
 		}
 
-		List<City> cityList = cityDao.list("");
+		List<CityPo> cityList = cityDao.list("");
 		Map<String, String> cityNameMap = new HashMap<String, String>();
 		if (null != cityList && !cityList.isEmpty()) {
-			for (City city : cityList) {
+			for (CityPo city : cityList) {
 				cityNameMap.put(city.getXinId(), city.getName());
 			}
 		}

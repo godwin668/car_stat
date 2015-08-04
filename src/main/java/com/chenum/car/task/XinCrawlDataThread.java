@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.chenum.car.dao.CarDao;
 import com.chenum.car.po.CarPo;
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 import com.chenum.car.type.XinPayTypeEnum;
 import com.chenum.car.util.CrawlXinUtil;
 
@@ -14,10 +14,10 @@ public class XinCrawlDataThread extends Thread {
 	private static final Logger logger = LoggerFactory.getLogger(XinCrawlDataThread.class);
 
 	private CarDao carDao;
-	private City city;
+	private CityPo city;
 	private XinPayTypeEnum payType;
 
-	public XinCrawlDataThread(CarDao carDao, City city, XinPayTypeEnum payType) {
+	public XinCrawlDataThread(CarDao carDao, CityPo city, XinPayTypeEnum payType) {
 		this.carDao = carDao;
 		this.city = city;
 		this.payType = payType;

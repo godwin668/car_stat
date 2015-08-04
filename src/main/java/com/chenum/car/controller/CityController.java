@@ -14,7 +14,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 import com.chenum.car.service.CityService;
 
 /**
@@ -35,12 +35,12 @@ public class CityController {
 	@ResponseBody
 	@RequestMapping(value = "list.json")
 	public Map<String, String> listJson(Model model) {
-		List<City> cityList = cityService.list("");
+		List<CityPo> cityList = cityService.list("");
 		Map<String, String> cityMap = new HashMap<String, String>();
 		if (CollectionUtils.isEmpty(cityList)) {
 			return cityMap;
 		}
-		for (City city : cityList) {
+		for (CityPo city : cityList) {
 			cityMap.put(city.getXinId(), city.getName());
 		}
 		return cityMap;

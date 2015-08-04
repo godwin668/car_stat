@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.chenum.car.dao.CarDao;
 import com.chenum.car.dao.CityDao;
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 import com.chenum.car.type.XinPayTypeEnum;
 
 @Component
@@ -41,12 +41,12 @@ public class XinCrawlDataTask {
 		logger.warn("[Crawl Dta Task] " + df.format(new Date()));
 
 		// get cities
-		List<City> cityList = cityDao.list("");
+		List<CityPo> cityList = cityDao.list("");
 		if (null == cityList || cityList.isEmpty()) {
 			return;
 		}
 
-		for (City city : cityList) {
+		for (CityPo city : cityList) {
 			for (XinPayTypeEnum payType : XinPayTypeEnum.values()) {
 				XinCrawlDataThread thread = new XinCrawlDataThread(carDao, city, payType);
 				executorService.submit(thread);

@@ -2,10 +2,10 @@ package com.chenum.car.service;
 
 import java.util.List;
 
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 
 public interface CityService {
 
-	public List<City> list(String query);
+	public List<CityPo> list(String query);
 
 }

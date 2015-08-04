@@ -8,7 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.jsoup.select.Elements;
 
 import com.chenum.car.po.CarPo;
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 import com.chenum.car.type.XinCheLingType;
 import com.chenum.car.type.XinCheyuanType;
 import com.chenum.car.type.XinJiageType;
@@ -21,7 +21,7 @@ public class CrawlXinUtil {
 	private static final String DOM_SUM_CAR = ".car-upper span em";
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public static CarPo doCrawl(City city, XinPayTypeEnum payType) {
+	public static CarPo doCrawl(CityPo city, XinPayTypeEnum payType) {
 		CarPo data = new CarPo();
 
 		// city

@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chenum.car.dao.CityDao;
-import com.chenum.car.po.City;
+import com.chenum.car.po.CityPo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:beans.xml",
@@ -19,7 +19,7 @@ public class CityTest {
 
 	@Test
 	public void testSave() {
-		City city = new City("201", "北京", "北京", "beijing");
+		CityPo city = new CityPo("201", "北京", "北京", "beijing");
 		cityDao.save(city);
 		System.out.println("done!");
 	}
