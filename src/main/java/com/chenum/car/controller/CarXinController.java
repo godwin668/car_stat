@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.chenum.car.service.CarService;
+import com.chenum.car.service.CarXinService;
 import com.chenum.car.service.CityService;
-import com.chenum.car.vo.CarVo;
+import com.chenum.car.vo.CarXinVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -25,13 +25,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Controller
 @RequestMapping("car")
-public class CarController {
+public class CarXinController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(CarController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CarXinController.class);
 	private static final ObjectMapper om = new ObjectMapper();
 	
 	@Resource
-	private CarService carService;
+	private CarXinService carService;
 
 	@Resource
 	private CityService cityService;
@@ -58,8 +58,8 @@ public class CarController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "get/{id}")
-	public CarVo get(Model model, @PathVariable int id) {
-		CarVo car = carService.get(id);
+	public CarXinVo get(Model model, @PathVariable int id) {
+		CarXinVo car = carService.get(id);
 		return car;
 	}
 
@@ -68,11 +68,11 @@ public class CarController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "list.json")
-	public List<CarVo> listJson(Model model,
+	public List<CarXinVo> listJson(Model model,
 			@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "city", required = false) String cityId,
 			@RequestParam(value = "type", required = false) String payType) {
-		List<CarVo> cars = carService.list(date, cityId, payType);
+		List<CarXinVo> cars = carService.list(date, cityId, payType);
 		return cars;
 	}
 

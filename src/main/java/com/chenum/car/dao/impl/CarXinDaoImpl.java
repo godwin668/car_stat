@@ -8,16 +8,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.chenum.car.dao.CarDao;
-import com.chenum.car.po.CarPo;
+import com.chenum.car.dao.CarXinDao;
+import com.chenum.car.po.CarXinPo;
 
 @Repository
-public class CarDaoImpl extends BaseDaoImpl implements CarDao {
+public class CarXinDaoImpl extends BaseDaoImpl implements CarXinDao {
 
 	private static final DateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Override
-	public CarPo save(CarPo car) {
+	public CarXinPo save(CarXinPo car) {
 		long id = (long) getHibernateTemplate().save(car);
 		car.setId(id);
 		return car;
@@ -25,20 +25,20 @@ public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 
 	@Override
 	public void delete(long id) {
-		CarPo car = get(id);
+		CarXinPo car = get(id);
 		getHibernateTemplate().delete(car);
 		getHibernateTemplate().flush();
 	}
 
 	@Override
-	public void update(CarPo car) {
+	public void update(CarXinPo car) {
 		getHibernateTemplate().update(car);
 		getHibernateTemplate().flush();
 	}
 
 	@Override
-	public CarPo get(long id) {
-		List<CarPo> list = (List<CarPo>) getHibernateTemplate().find("from " + CarPo.class.getSimpleName() + " where id=?", id);
+	public CarXinPo get(long id) {
+		List<CarXinPo> list = (List<CarXinPo>) getHibernateTemplate().find("from " + CarXinPo.class.getSimpleName() + " where id=?", id);
 		if (null != list && !list.isEmpty()) {
 			return list.get(0);
 		} else {
@@ -47,19 +47,19 @@ public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 	}
 
 	@Override
-	public List<CarPo> list(String whereClause) {
-		List<CarPo> list = (List<CarPo>) getHibernateTemplate().find("from " + CarPo.class.getSimpleName() + whereClause);
+	public List<CarXinPo> list(String whereClause) {
+		List<CarXinPo> list = (List<CarXinPo>) getHibernateTemplate().find("from " + CarXinPo.class.getSimpleName() + whereClause);
 		return list;
 	}
 
 	@Override
 	public List<Date> listDate() {
-		List<CarPo> poList = list("");
+		List<CarXinPo> poList = list("");
 		List<Date> dateList = new ArrayList<Date>();
 		if (null == poList || poList.isEmpty()) {
 			return dateList;
 		}
-		for (CarPo po : poList) {
+		for (CarXinPo po : poList) {
 			dateList.add(po.getCtime());
 		}
 		return dateList;

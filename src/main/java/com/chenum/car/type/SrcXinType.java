@@ -2,7 +2,7 @@ package com.chenum.car.type;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-public enum XinCheyuanType {
+public enum SrcXinType {
 	
 	QUANBUCHEYUAN("全部车源", "1"),
 	WUSHIGUCHENGNUO("无事故承诺", "2"),
@@ -13,7 +13,7 @@ public enum XinCheyuanType {
 	private String id;
 	private String name;
 	
-	private XinCheyuanType(String name, String id) {
+	private SrcXinType(String name, String id) {
 		this.name = name;
 		this.id = id;
 	}
@@ -40,8 +40,8 @@ public enum XinCheyuanType {
 	}
 
 	public static void main(String[] args) {
-		XinCheyuanType[] types = XinCheyuanType.values();
-		for (XinCheyuanType type : types) {
+		SrcXinType[] types = SrcXinType.values();
+		for (SrcXinType type : types) {
 			System.out.println(type);
 		}
 	}

@@ -15,22 +15,22 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.chenum.car.dao.CarDao;
+import com.chenum.car.dao.CarXinDao;
 import com.chenum.car.dao.CityDao;
 import com.chenum.car.po.CityPo;
-import com.chenum.car.type.XinPayTypeEnum;
+import com.chenum.car.type.PayXinEnum;
 
 @Component
 @EnableScheduling
-public class XinCrawlDataTask {
+public class CrawlXinTask {
 	
-	private static final Logger logger = LoggerFactory.getLogger(XinCrawlDataTask.class);
+	private static final Logger logger = LoggerFactory.getLogger(CrawlXinTask.class);
 
 	@Resource
 	private CityDao cityDao;
 
 	@Resource
-	private CarDao carDao;
+	private CarXinDao carDao;
 
 	ExecutorService executorService = Executors.newFixedThreadPool(10);
 
@@ -47,8 +47,8 @@ public class XinCrawlDataTask {
 		}
 
 		for (CityPo city : cityList) {
-			for (XinPayTypeEnum payType : XinPayTypeEnum.values()) {
-				XinCrawlDataThread thread = new XinCrawlDataThread(carDao, city, payType);
+			for (PayXinEnum payType : PayXinEnum.values()) {
+				CrawlXinThread thread = new CrawlXinThread(carDao, city, payType);
 				executorService.submit(thread);
 			}
 		}

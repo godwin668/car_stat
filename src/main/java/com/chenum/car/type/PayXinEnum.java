@@ -1,12 +1,12 @@
 package com.chenum.car.type;
 
-public enum XinPayTypeEnum {
+public enum PayXinEnum {
 	
 	SALE("s"), HALF("h");
 
 	private String value;
 	
-	private XinPayTypeEnum(String value) {
+	private PayXinEnum(String value) {
 		this.value = value;
 	}
 
@@ -24,6 +24,6 @@ public enum XinPayTypeEnum {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(XinPayTypeEnum.HALF.getValue());
+		System.out.println(PayXinEnum.HALF.getValue());
 	}
 }

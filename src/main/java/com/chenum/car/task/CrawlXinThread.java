@@ -3,21 +3,21 @@ package com.chenum.car.task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.chenum.car.dao.CarDao;
-import com.chenum.car.po.CarPo;
+import com.chenum.car.dao.CarXinDao;
+import com.chenum.car.po.CarXinPo;
 import com.chenum.car.po.CityPo;
-import com.chenum.car.type.XinPayTypeEnum;
+import com.chenum.car.type.PayXinEnum;
 import com.chenum.car.util.CrawlXinUtil;
 
-public class XinCrawlDataThread extends Thread {
+public class CrawlXinThread extends Thread {
 	
-	private static final Logger logger = LoggerFactory.getLogger(XinCrawlDataThread.class);
+	private static final Logger logger = LoggerFactory.getLogger(CrawlXinThread.class);
 
-	private CarDao carDao;
+	private CarXinDao carDao;
 	private CityPo city;
-	private XinPayTypeEnum payType;
+	private PayXinEnum payType;
 
-	public XinCrawlDataThread(CarDao carDao, CityPo city, XinPayTypeEnum payType) {
+	public CrawlXinThread(CarXinDao carDao, CityPo city, PayXinEnum payType) {
 		this.carDao = carDao;
 		this.city = city;
 		this.payType = payType;
@@ -26,7 +26,7 @@ public class XinCrawlDataThread extends Thread {
 	@Override
 	public void run() {
 		logger.info("[Crawl Xin Task START] " + city.getName() + " - " + payType.getValue());
-		CarPo carXin = CrawlXinUtil.doCrawl(city, payType);
+		CarXinPo carXin = CrawlXinUtil.doCrawl(city, payType);
 		carDao.save(carXin);
 		logger.info("[Crawl Xin Task DONE] " + city.getName() + " - " + payType.getValue() + " - " + carXin);
 	}

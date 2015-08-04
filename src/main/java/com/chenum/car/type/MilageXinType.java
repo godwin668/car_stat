@@ -2,20 +2,21 @@ package com.chenum.car.type;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-public enum XinJiageType {
+public enum MilageXinType {
 	
-	PRICE_0_5("5万以下", "0-5"),
-	PRICE_5_10("5-10万", "5-10"),
-	PRICE_10_15("10-15万", "10-15"),
-	PRICE_15_20("15-20万", "15-20"),
-	PRICE_20_30("20-30万", "20-30"),
-	PRICE_30_50("30-50万", "30-50"),
-	PRICE_50_("50万以上", "50-");
+	// "http://www.xin.com/{city}/{s}/o2a10i1v1k{licheng}/";
+
+	KM_0_1("1万公里内", "0-1"),
+	KM_1_3("1-3万公里", "1-3"),
+	KM_3_6("3-6万公里", "3-6"),
+	KM_6_10("6-10万公里", "6-10"),
+	KM_10_20("10-20万公里", "10-20"),
+	KM_20_("20万公里以上", "20-");
 	
 	private String id;
 	private String name;
 	
-	private XinJiageType(String name, String id) {
+	private MilageXinType(String name, String id) {
 		this.name = name;
 		this.id = id;
 	}
@@ -42,8 +43,8 @@ public enum XinJiageType {
 	}
 
 	public static void main(String[] args) {
-		XinJiageType[] types = XinJiageType.values();
-		for (XinJiageType type : types) {
+		MilageXinType[] types = MilageXinType.values();
+		for (MilageXinType type : types) {
 			System.out.println(type);
 		}
 	}

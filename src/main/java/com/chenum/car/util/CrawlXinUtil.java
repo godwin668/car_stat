@@ -7,13 +7,13 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.select.Elements;
 
-import com.chenum.car.po.CarPo;
+import com.chenum.car.po.CarXinPo;
 import com.chenum.car.po.CityPo;
-import com.chenum.car.type.XinCheLingType;
-import com.chenum.car.type.XinCheyuanType;
-import com.chenum.car.type.XinJiageType;
-import com.chenum.car.type.XinLiChengType;
-import com.chenum.car.type.XinPayTypeEnum;
+import com.chenum.car.type.AgeXinType;
+import com.chenum.car.type.SrcXinType;
+import com.chenum.car.type.PriceXinType;
+import com.chenum.car.type.MilageXinType;
+import com.chenum.car.type.PayXinEnum;
 
 public class CrawlXinUtil {
 	
@@ -21,8 +21,8 @@ public class CrawlXinUtil {
 	private static final String DOM_SUM_CAR = ".car-upper span em";
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public static CarPo doCrawl(CityPo city, XinPayTypeEnum payType) {
-		CarPo data = new CarPo();
+	public static CarXinPo doCrawl(CityPo city, PayXinEnum payType) {
+		CarXinPo data = new CarXinPo();
 
 		// city
 		String cityListname = city.getListname();
@@ -34,8 +34,8 @@ public class CrawlXinUtil {
 		log(city.getProvince() + "_" + city.getName(), " ----------- ");
 
 		// 车源
-		XinCheyuanType[] cheyuanTypes = XinCheyuanType.values();
-		for (XinCheyuanType type : cheyuanTypes) {
+		SrcXinType[] cheyuanTypes = SrcXinType.values();
+		for (SrcXinType type : cheyuanTypes) {
 			String cheyuanUrl = buyUrl + "v" + type.getId() + "/";
 			Elements element = JsoupUtil.getRemoteDom(cheyuanUrl,
 					DOM_SUM_CAR);
@@ -57,8 +57,8 @@ public class CrawlXinUtil {
 		}
 
 		// 车龄
-		XinCheLingType[] chelingTypes = XinCheLingType.values();
-		for (XinCheLingType type : chelingTypes) {
+		AgeXinType[] chelingTypes = AgeXinType.values();
+		for (AgeXinType type : chelingTypes) {
 			String chelingUrl = buyUrl + "r" + type.getId() + "/";
 			Elements element = JsoupUtil.getRemoteDom(chelingUrl,
 					DOM_SUM_CAR);
@@ -80,8 +80,8 @@ public class CrawlXinUtil {
 		}
 
 		// 里程
-		XinLiChengType[] lichengTypes = XinLiChengType.values();
-		for (XinLiChengType type : lichengTypes) {
+		MilageXinType[] lichengTypes = MilageXinType.values();
+		for (MilageXinType type : lichengTypes) {
 			String lichengUrl = buyUrl + "k" + type.getId() + "/";
 			Elements element = JsoupUtil.getRemoteDom(lichengUrl,
 					DOM_SUM_CAR);
@@ -105,8 +105,8 @@ public class CrawlXinUtil {
 		}
 
 		// 价格
-		XinJiageType[] jiageTypes = XinJiageType.values();
-		for (XinJiageType type : jiageTypes) {
+		PriceXinType[] jiageTypes = PriceXinType.values();
+		for (PriceXinType type : jiageTypes) {
 			String jiageUrl = buyUrl + "k" + type.getId() + "/";
 			Elements element = JsoupUtil.getRemoteDom(jiageUrl, DOM_SUM_CAR);
 			log("价格_" + type.getName() + "_" + jiageUrl, element.html());

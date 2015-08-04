@@ -2,7 +2,7 @@ package com.chenum.car.type;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-public enum XinCheLingType {
+public enum AgeXinType {
 	
 	// http://www.xin.com/beijing/s/o2a10i1v1r0-1/
 
@@ -15,7 +15,7 @@ public enum XinCheLingType {
 	private String id;
 	private String name;
 	
-	private XinCheLingType(String name, String id) {
+	private AgeXinType(String name, String id) {
 		this.name = name;
 		this.id = id;
 	}
@@ -42,8 +42,8 @@ public enum XinCheLingType {
 	}
 
 	public static void main(String[] args) {
-		XinCheLingType[] types = XinCheLingType.values();
-		for (XinCheLingType type : types) {
+		AgeXinType[] types = AgeXinType.values();
+		for (AgeXinType type : types) {
 			System.out.println(type);
 		}
 	}

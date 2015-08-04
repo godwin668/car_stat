@@ -16,18 +16,18 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
 
-import com.chenum.car.dao.CarDao;
+import com.chenum.car.dao.CarXinDao;
 import com.chenum.car.dao.CityDao;
-import com.chenum.car.po.CarPo;
+import com.chenum.car.po.CarXinPo;
 import com.chenum.car.po.CityPo;
-import com.chenum.car.service.CarService;
-import com.chenum.car.vo.CarVo;
+import com.chenum.car.service.CarXinService;
+import com.chenum.car.vo.CarXinVo;
 
 @Service
-public class CarServiceImpl implements CarService {
+public class CarXinServiceImpl implements CarXinService {
 
 	@Resource
-	private CarDao carDao;
+	private CarXinDao carDao;
 
 	@Resource
 	private CityDao cityDao;
@@ -41,12 +41,12 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public CarVo get(long id) {
+	public CarXinVo get(long id) {
 		return convertPo2Vo(carDao.get(id));
 	}
 
 	@Override
-	public List<CarVo> list(String date, String cityId, String payType) {
+	public List<CarXinVo> list(String date, String cityId, String payType) {
 		List<String> conditions = new ArrayList<String>();
 		if (null != date && date.matches("\\d{4}-\\d{2}-\\d{2}")) {
 			try {
@@ -100,14 +100,14 @@ public class CarServiceImpl implements CarService {
 		return strList;
 	}
 
-	public CarVo convertPo2Vo(CarPo po) {
-		List<CarPo> poList = new ArrayList<CarPo>();
+	public CarXinVo convertPo2Vo(CarXinPo po) {
+		List<CarXinPo> poList = new ArrayList<CarXinPo>();
 		poList.add(po);
 		return convertPo2Vo(poList).get(0);
 	}
 
-	public List<CarVo> convertPo2Vo(List<CarPo> poList) {
-		List<CarVo> voList = new ArrayList<CarVo>();
+	public List<CarXinVo> convertPo2Vo(List<CarXinPo> poList) {
+		List<CarXinVo> voList = new ArrayList<CarXinVo>();
 		if (null == poList || poList.isEmpty()) {
 			return voList;
 		}
@@ -120,8 +120,8 @@ public class CarServiceImpl implements CarService {
 			}
 		}
 
-		for (CarPo po : poList) {
-			CarVo vo = new CarVo();
+		for (CarXinPo po : poList) {
+			CarXinVo vo = new CarXinVo();
 			vo.setId(po.getId());
 			vo.setCtime(df.format(po.getCtime()));
 			vo.setCityId(po.getCityId());

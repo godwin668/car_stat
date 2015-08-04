@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class CarVo implements Serializable {
+public class CarXinVo implements Serializable {
 
 	/**
 	 * 
