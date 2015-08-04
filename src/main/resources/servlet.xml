@@ -39,6 +39,6 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<context:component-scan base-package="com.idocv" />
+	<context:component-scan base-package="com.chenum.car" />
 	
 </beans>

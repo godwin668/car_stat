@@ -1,40 +1,58 @@
-/*
- Navicat Premium Data Transfer
+-- --------------------------------------------------------
+-- 主机:                           127.0.0.1
+-- 服务器版本:                        5.6.24 - MySQL Community Server (GPL)
+-- 服务器操作系统:                      Win32
+-- HeidiSQL 版本:                  8.3.0.4694
+-- --------------------------------------------------------
 
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 50615
- Source Host           : localhost
- Source Database       : car_sum
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
- Target Server Type    : MySQL
- Target Server Version : 50615
- File Encoding         : utf-8
-
- Date: 08/01/2015 21:58:31 PM
-*/
-
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
---  Table structure for `city`
--- ----------------------------
+-- 导出  表 car.city 结构
 DROP TABLE IF EXISTS `city`;
-CREATE TABLE `city` (
+CREATE TABLE IF NOT EXISTS `city` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `listname` varchar(255) COLLATE utf8_bin NOT NULL,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `province` varchar(255) COLLATE utf8_bin NOT NULL,
-  `xin_id` varchar(255) COLLATE utf8_bin NOT NULL,
+  `province` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id_58` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `list_58` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id_xin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `list_xin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
---  Records of `city`
--- ----------------------------
-BEGIN;
-INSERT INTO `city` VALUES ('1', 'quanguo', '全国', '全国', '0'), ('2', 'beijing', '北京', '北京', '201'), ('3', 'chengdu', '成都', '四川', '2501'), ('4', 'dalian', '大连', '辽宁', '1708'), ('5', 'foshan', '佛山', '广东', '518'), ('6', 'guangzhou', '广州', '广东', '501'), ('7', 'haerbin', '哈尔滨', '黑龙江', '1101'), ('8', 'hangzhou', '杭州', '浙江', '3001'), ('9', 'hefei', '合肥', '安徽', '101'), ('10', 'jinan', '济南', '山东', '2101'), ('11', 'nanning', '南宁', '广西', '601'), ('12', 'ningbo', '宁波', '浙江', '3002'), ('13', 'qingdao', '青岛', '山东', '2102'), ('14', 'shanghai', '上海', '上海', '2401'), ('15', 'shenzhen', '深圳', '广东', '502'), ('16', 'shenyang', '沈阳', '辽宁', '1701'), ('17', 'shijiazhuang', '石家庄', '河北', '901'), ('18', 'suzhou', '苏州', '江苏', '1502'), ('19', 'taiyuan', '太原', '山西', '2201'), ('20', 'tianjin', '天津', '天津', '2601'), ('21', 'wuhan', '武汉', '湖北', '1201'), ('22', 'xian', '西安', '陕西', '2301'), ('23', 'changchun', '长春', '吉林', '1401'), ('24', 'changsha', '长沙', '湖南', '1301'), ('25', 'zhengzhou', '郑州', '河南', '1001'), ('26', 'chongqing', '重庆', '重庆', '3101');
-COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
+-- 正在导出表  car.city 的数据：~26 rows (大约)
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+REPLACE INTO `city` (`id`, `province`, `name`, `id_58`, `list_58`, `id_xin`, `list_xin`) VALUES
+	(1, '全国', '全国', '8728', 'quanguo', '0', 'quanguo'),
+	(2, '北京', '北京', '1', 'bj', '201', 'beijing'),
+	(3, '四川', '成都', '102', 'cd', '2501', 'chengdu'),
+	(4, '辽宁', '大连', '147', 'dl', '1708', 'dalian'),
+	(5, '广东', '佛山', '222', 'fs', '518', 'foshan'),
+	(6, '广东', '广州', '3', 'gz', '501', 'guangzhou'),
+	(7, '黑龙江', '哈尔滨', '202', 'hrb', '1101', 'haerbin'),
+	(8, '浙江', '杭州', '79', 'hz', '3001', 'hangzhou'),
+	(9, '安徽', '合肥', '837', 'hf', '101', 'hefei'),
+	(10, '山东', '济南', '265', 'jn', '2101', 'jinan'),
+	(11, '广西', '南宁', '845', 'nn', '601', 'nanning'),
+	(12, '浙江', '宁波', '135', 'nb', '3002', 'ningbo'),
+	(13, '山东', '青岛', '122', 'qd', '2102', 'qingdao'),
+	(14, '上海', '上海', '2', 'sh', '2401', 'shanghai'),
+	(15, '广东', '深圳', '4', 'sz', '502', 'shenzhen'),
+	(16, '辽宁', '沈阳', '188', 'sy', '1701', 'shenyang'),
+	(17, '河北', '石家庄', '241', 'sjz', '901', 'shijiazhuang'),
+	(18, '江苏', '苏州', '5', 'su', '1502', 'suzhou'),
+	(19, '山西', '太原', '740', 'ty', '2201', 'taiyuan'),
+	(20, '天津', '天津', '18', 'tj', '2601', 'tianjin'),
+	(21, '湖北', '武汉', '158', 'wh', '1201', 'wuhan'),
+	(22, '陕西', '西安', '483', 'xa', '2301', 'xian'),
+	(23, '吉林', '长春', '319', 'cc', '1401', 'changchun'),
+	(24, '湖南', '长沙', '414', 'cs', '1301', 'changsha'),
+	(25, '河南', '郑州', '342', 'zz', '1001', 'zhengzhou'),
+	(26, '重庆', '重庆', '37', 'cq', '3101', 'chongqing');
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
