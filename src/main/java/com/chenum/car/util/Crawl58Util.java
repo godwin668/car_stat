@@ -15,8 +15,8 @@ import com.chenum.car.type.Src58Type;
 
 public class Crawl58Util {
 	
-	private static final String BASE_URL_58 = "http://{city}.58.com/ershouche/";
-	private static final String DOM_SUM_CAR = ".car-upper span em";
+	private static final String BASE_URL_58 = "http://<city>.58.com/ershouche/";
+	private static final String DOM_SUM_CAR = "#infolist .filterbar table tr td label span";
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public static CarPo doCrawl(CityPo city) {
@@ -24,7 +24,7 @@ public class Crawl58Util {
 
 		// city
 		String cityListname = city.getList58();
-		String basicUrl = BASE_URL_58.replaceFirst("{city}", cityListname);
+		String basicUrl = BASE_URL_58.replaceFirst("<city>", cityListname);
 
 		log(city.getProvince() + "_" + city.getName(), " ----------- ");
 
