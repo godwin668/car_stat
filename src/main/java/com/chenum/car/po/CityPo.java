@@ -24,27 +24,54 @@ public class CityPo implements Serializable {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "xin_id", length = 255, nullable = false)
-	private String xinId;
-
+	/**
+	 * 省
+	 */
 	@Column(name = "province", length = 255, nullable = false)
 	private String province;
 
+	/**
+	 * 城市名称
+	 */
 	@Column(name = "name", length = 255, nullable = false)
 	private String name;
 
-	@Column(name = "listname", length = 255, nullable = false)
-	private String listname;
+	/**
+	 * 优信ID
+	 */
+	@Column(name = "id_xin", length = 255, nullable = false)
+	private String idXin;
+
+	/**
+	 * 58ID
+	 */
+	@Column(name = "id_58", length = 255, nullable = false)
+	private String id58;
+
+	/**
+	 * 列表名称 - 优信
+	 */
+	@Column(name = "list_xin", length = 255, nullable = false)
+	private String listXin;
+
+	/**
+	 * 列表名称 - 58
+	 */
+	@Column(name = "list_58", length = 255, nullable = false)
+	private String list58;
 
 	public CityPo() {
 		super();
 	}
 
-	public CityPo(String xinId, String province, String name, String listname) {
-		this.xinId = xinId;
+	public CityPo(Long id, String province, String name, String idXin, String id58, String listXin, String list58) {
+		this.id = id;
 		this.province = province;
 		this.name = name;
-		this.listname = listname;
+		this.idXin = idXin;
+		this.id58 = id58;
+		this.listXin = listXin;
+		this.list58 = list58;
 	}
 
 	public Long getId() {
@@ -53,14 +80,6 @@ public class CityPo implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getXinId() {
-		return xinId;
-	}
-
-	public void setXinId(String xinId) {
-		this.xinId = xinId;
 	}
 
 	public String getProvince() {
@@ -79,12 +98,36 @@ public class CityPo implements Serializable {
 		this.name = name;
 	}
 
-	public String getListname() {
-		return listname;
+	public String getIdXin() {
+		return idXin;
 	}
 
-	public void setListname(String listname) {
-		this.listname = listname;
+	public void setIdXin(String idXin) {
+		this.idXin = idXin;
+	}
+
+	public String getId58() {
+		return id58;
+	}
+
+	public void setId58(String id58) {
+		this.id58 = id58;
+	}
+
+	public String getListXin() {
+		return listXin;
+	}
+
+	public void setListXin(String listXin) {
+		this.listXin = listXin;
+	}
+
+	public String getList58() {
+		return list58;
+	}
+
+	public void setList58(String list58) {
+		this.list58 = list58;
 	}
 
 	@Override

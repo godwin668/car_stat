@@ -63,7 +63,7 @@ public class CarServiceImpl implements CarService {
 			CityPo city = cityDao.getByXinId(cityId);
 			if (null != city) {
 				// append city to query
-				conditions.add("city_id='" + city.getXinId() + "'");
+				conditions.add("city_id='" + city.getIdXin() + "'");
 			}
 		}
 
@@ -116,7 +116,7 @@ public class CarServiceImpl implements CarService {
 		Map<String, String> cityNameMap = new HashMap<String, String>();
 		if (null != cityList && !cityList.isEmpty()) {
 			for (CityPo city : cityList) {
-				cityNameMap.put(city.getXinId(), city.getName());
+				cityNameMap.put(city.getIdXin(), city.getName());
 			}
 		}
 
@@ -132,7 +132,8 @@ public class CarServiceImpl implements CarService {
 				vo.setCityName("未知");
 			}
 			String payType = po.getPay_type();
-			payType = "s".equals(payType) ? "买车" : ("h".equals(payType) ? "付半价" : "未知");
+			payType = "s".equals(payType) ? "买车" : ("h".equals(payType) ? "付半价"
+					: "未知");
 			vo.setPay_type(payType);
 			vo.setSrcAll(po.getSrcAll());
 			vo.setSrcNoAccident(po.getSrcNoAccident());

@@ -4,10 +4,8 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 public enum Src58Type {
 	
-	QUANBUCHEYUAN("全部车源", "-1"),
-	GERENCHEYUAN("个人车源", "0"),
-	SHANGJIAZHIBAO("商家车源", "1"),
-	VINJIANCE("VIN码检测", "2");
+	ALL("全部车源", "-1"), PERSONAL("个人车源", "0"), SELLER("商家车源", "1"), VIN(
+			"VIN码检测", "2");
 	
 	private String id;
 	private String name;
@@ -39,9 +37,7 @@ public enum Src58Type {
 	}
 
 	public static void main(String[] args) {
-		Src58Type[] types = Src58Type.values();
-		for (Src58Type type : types) {
-			System.out.println(type);
-		}
+		System.out.println(Src58Type.ALL.equals(Src58Type.PERSONAL));
+		System.out.println(Src58Type.ALL == Src58Type.PERSONAL);
 	}
 }

@@ -10,10 +10,10 @@ import org.jsoup.select.Elements;
 import com.chenum.car.po.CarPo;
 import com.chenum.car.po.CityPo;
 import com.chenum.car.type.AgeType;
-import com.chenum.car.type.SrcXinType;
-import com.chenum.car.type.PriceType;
 import com.chenum.car.type.MilageType;
 import com.chenum.car.type.PayXinEnum;
+import com.chenum.car.type.PriceType;
+import com.chenum.car.type.SrcXinType;
 
 public class CrawlXinUtil {
 	
@@ -25,7 +25,7 @@ public class CrawlXinUtil {
 		CarPo data = new CarPo();
 
 		// city
-		String cityListname = city.getListname();
+		String cityListname = city.getListXin();
 		String cityUrl = BASE_URL_XIN + cityListname + "/";
 
 		// sale & half
@@ -59,7 +59,7 @@ public class CrawlXinUtil {
 		// 车龄
 		AgeType[] chelingTypes = AgeType.values();
 		for (AgeType type : chelingTypes) {
-			String chelingUrl = buyUrl + "r" + type.getId() + "/";
+			String chelingUrl = buyUrl + "r" + type.getIdXin() + "/";
 			Elements element = JsoupUtil.getRemoteDom(chelingUrl,
 					DOM_SUM_CAR);
 			log("车龄_" + type.getName() + "_" + chelingUrl,
@@ -107,7 +107,7 @@ public class CrawlXinUtil {
 		// 价格
 		PriceType[] jiageTypes = PriceType.values();
 		for (PriceType type : jiageTypes) {
-			String jiageUrl = buyUrl + "k" + type.getId() + "/";
+			String jiageUrl = buyUrl + "k" + type.getIdXin() + "/";
 			Elements element = JsoupUtil.getRemoteDom(jiageUrl, DOM_SUM_CAR);
 			log("价格_" + type.getName() + "_" + jiageUrl, element.html());
 
@@ -130,7 +130,7 @@ public class CrawlXinUtil {
 		}
 
 		data.setCtime(new Date());
-		data.setCityId(city.getXinId());
+		data.setCityId(city.getIdXin());
 		data.setPay_type(payType.getValue());
 		return data;
 	}

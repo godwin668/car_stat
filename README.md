@@ -69,3 +69,9 @@
 * Open Source & Free
 * Powered by godwin668@gmail.com
 
+## Update Log
+
+2015-08-05
+CarPo添加58VIN码检测
+CityPo修改
+

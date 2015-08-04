@@ -41,7 +41,7 @@ public class CityController {
 			return cityMap;
 		}
 		for (CityPo city : cityList) {
-			cityMap.put(city.getXinId(), city.getName());
+			cityMap.put(city.getIdXin(), city.getName());
 		}
 		return cityMap;
 	}

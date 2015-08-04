@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,13 +19,12 @@ import org.springframework.stereotype.Component;
 import com.chenum.car.dao.CarDao;
 import com.chenum.car.dao.CityDao;
 import com.chenum.car.po.CityPo;
-import com.chenum.car.type.PayXinEnum;
 
 @Component
 @EnableScheduling
-public class CrawlXinTask {
+public class Crawl58Task {
 	
-	private static final Logger logger = LoggerFactory.getLogger(CrawlXinTask.class);
+	private static final Logger logger = LoggerFactory.getLogger(Crawl58Task.class);
 
 	@Resource
 	private CityDao cityDao;
@@ -32,13 +32,16 @@ public class CrawlXinTask {
 	@Resource
 	private CarDao carDao;
 
-	ExecutorService executorService = Executors.newFixedThreadPool(10);
+	@Value("${task.crawl.58.freq}")
+	private int taskCrawl58Freq;
+
+	ExecutorService executorService = Executors.newFixedThreadPool(5);
 
 	// 0 0 22 * * ?
-	@Scheduled(cron = "${task.crawl.xin.cron}")
+	@Scheduled(cron = "${task.crawl.58.cron}")
 	public void run() {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		logger.warn("[Crawl Task XIN] " + df.format(new Date()));
+		logger.warn("[Crawl Task 58] " + df.format(new Date()));
 
 		// get cities
 		List<CityPo> cityList = cityDao.list("");
@@ -47,10 +50,8 @@ public class CrawlXinTask {
 		}
 
 		for (CityPo city : cityList) {
-			for (PayXinEnum payType : PayXinEnum.values()) {
-				CrawlXinThread thread = new CrawlXinThread(carDao, city, payType);
-				executorService.submit(thread);
-			}
+			Crawl58Thread thread = new Crawl58Thread(carDao, city);
+			executorService.submit(thread);
 		}
 	}
 

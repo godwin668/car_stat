@@ -39,7 +39,7 @@ public class CarPo implements Serializable {
 	private String cityId;
 
 	/**
-	 * 买车：s，付一半：h
+	 * 买车：s，付一半：h - xin
 	 */
 	@Column(name = "pay_type", length = 10, nullable = false)
 	private String pay_type;
@@ -51,13 +51,13 @@ public class CarPo implements Serializable {
 	private int srcAll;
 
 	/**
-	 * 无事故承诺
+	 * 无事故承诺 - xin
 	 */
 	@Column(name = "src_no_accident", length = 30)
 	private int srcNoAccident;
 
 	/**
-	 * 原厂质保
+	 * 原厂质保 - xin
 	 */
 	@Column(name = "src_original", length = 30)
 	private int srcOriginal;
@@ -73,6 +73,12 @@ public class CarPo implements Serializable {
 	 */
 	@Column(name = "src_personal", length = 30)
 	private int srcPersonal;
+
+	/**
+	 * VIN码检测 - 58
+	 */
+	@Column(name = "src_vin", length = 30)
+	private int srcVin;
 
 	/**
 	 * 车龄_一年内
@@ -252,6 +258,14 @@ public class CarPo implements Serializable {
 
 	public void setSrcPersonal(int srcPersonal) {
 		this.srcPersonal = srcPersonal;
+	}
+
+	public int getSrcVin() {
+		return srcVin;
+	}
+
+	public void setSrcVin(int srcVin) {
+		this.srcVin = srcVin;
 	}
 
 	public int getAge_1() {
