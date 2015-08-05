@@ -19,9 +19,9 @@ public class CarXinVo implements Serializable {
 	private String ctime;
 
 	/**
-	 * Xin 城市ID
+	 * 城市ID
 	 */
-	private String cityId;
+	private int cityId;
 
 	/**
 	 * 城市名称
@@ -164,11 +164,11 @@ public class CarXinVo implements Serializable {
 		this.ctime = ctime;
 	}
 
-	public String getCityId() {
+	public int getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(String cityId) {
+	public void setCityId(int cityId) {
 		this.cityId = cityId;
 	}
 

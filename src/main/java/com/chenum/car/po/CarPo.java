@@ -33,15 +33,15 @@ public class CarPo implements Serializable {
 	private Date ctime;
 
 	/**
-	 * 城市ID - xin
+	 * 城市ID
 	 */
 	@Column(name = "city_id", length = 255, nullable = false)
-	private String cityId;
+	private int cityId;
 
 	/**
 	 * 买车：s，付一半：h - xin
 	 */
-	@Column(name = "pay_type", length = 10, nullable = false)
+	@Column(name = "pay_type", length = 10)
 	private String pay_type;
 
 	/**
@@ -204,11 +204,11 @@ public class CarPo implements Serializable {
 		this.ctime = ctime;
 	}
 
-	public String getCityId() {
+	public int getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(String cityId) {
+	public void setCityId(int cityId) {
 		this.cityId = cityId;
 	}
 

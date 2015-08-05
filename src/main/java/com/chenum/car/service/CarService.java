@@ -10,7 +10,7 @@ public interface CarService {
 
 	public CarXinVo get(long id);
 
-	public List<CarXinVo> list(String date, String cityId, String payType);
+	public List<CarXinVo> list(String date, int cityId, String payType);
 
 	public List<String> listDate();
 }

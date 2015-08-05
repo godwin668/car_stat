@@ -19,7 +19,7 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(int id) {
 		CityPo city = get(id);
 		getHibernateTemplate().delete(city);
 		getHibernateTemplate().flush();
@@ -32,18 +32,8 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 	}
 
 	@Override
-	public CityPo get(long id) {
+	public CityPo get(int id) {
 		List<CityPo> list = (List<CityPo>) getHibernateTemplate().find("from " + CityPo.class.getSimpleName() + " where id=?", id);
-		if (null != list && !list.isEmpty()) {
-			return list.get(0);
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public CityPo getByXinId(String xinId) {
-		List<CityPo> list = (List<CityPo>) getHibernateTemplate().find("from " + CityPo.class.getSimpleName() + " where xin_id=?", xinId);
 		if (null != list && !list.isEmpty()) {
 			return list.get(0);
 		} else {

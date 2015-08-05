@@ -70,7 +70,7 @@ public class CarXinController {
 	@RequestMapping(value = "list.json")
 	public List<CarXinVo> listJson(Model model,
 			@RequestParam(value = "date", required = false) String date,
-			@RequestParam(value = "city", required = false) String cityId,
+			@RequestParam(value = "city", required = false) int cityId,
 			@RequestParam(value = "type", required = false) String payType) {
 		List<CarXinVo> cars = carService.list(date, cityId, payType);
 		return cars;

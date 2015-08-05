@@ -46,7 +46,7 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<CarXinVo> list(String date, String cityId, String payType) {
+	public List<CarXinVo> list(String date, int cityId, String payType) {
 		List<String> conditions = new ArrayList<String>();
 		if (null != date && date.matches("\\d{4}-\\d{2}-\\d{2}")) {
 			try {
@@ -59,12 +59,10 @@ public class CarServiceImpl implements CarService {
 			}
 		}
 
-		if (null != cityId && cityId.matches("\\d+")) {
-			CityPo city = cityDao.getByXinId(cityId);
-			if (null != city) {
-				// append city to query
-				conditions.add("city_id='" + city.getIdXin() + "'");
-			}
+		CityPo city = cityDao.get(cityId);
+		if (null != city) {
+			// append city to query
+			conditions.add("city_id='" + city.getId() + "'");
 		}
 
 		if ("s".equalsIgnoreCase(payType) || "h".equalsIgnoreCase(payType)) {
@@ -113,10 +111,10 @@ public class CarServiceImpl implements CarService {
 		}
 
 		List<CityPo> cityList = cityDao.list("");
-		Map<String, String> cityNameMap = new HashMap<String, String>();
+		Map<Integer, String> cityNameMap = new HashMap<Integer, String>();
 		if (null != cityList && !cityList.isEmpty()) {
 			for (CityPo city : cityList) {
-				cityNameMap.put(city.getIdXin(), city.getName());
+				cityNameMap.put(city.getId(), city.getName());
 			}
 		}
 
@@ -125,7 +123,7 @@ public class CarServiceImpl implements CarService {
 			vo.setId(po.getId());
 			vo.setCtime(df.format(po.getCtime()));
 			vo.setCityId(po.getCityId());
-			String cityXinId = po.getCityId();
+			int cityXinId = po.getCityId();
 			if (null != cityNameMap && !cityNameMap.isEmpty() && cityNameMap.containsKey(cityXinId)) {
 				vo.setCityName(cityNameMap.get(cityXinId));
 			} else {

@@ -129,7 +129,7 @@ public class CrawlXinUtil {
 		}
 
 		data.setCtime(new Date());
-		data.setCityId(city.getIdXin());
+		data.setCityId(city.getId());
 		data.setPay_type(payType.getValue());
 		return data;
 	}

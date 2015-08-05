@@ -22,7 +22,7 @@ public class CityPo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long id;
+	private int id;
 
 	/**
 	 * 省
@@ -35,18 +35,6 @@ public class CityPo implements Serializable {
 	 */
 	@Column(name = "name", length = 255, nullable = false)
 	private String name;
-
-	/**
-	 * 优信ID
-	 */
-	@Column(name = "id_xin", length = 255, nullable = false)
-	private String idXin;
-
-	/**
-	 * 58ID
-	 */
-	@Column(name = "id_58", length = 255, nullable = false)
-	private String id58;
 
 	/**
 	 * 列表名称 - 优信
@@ -64,21 +52,19 @@ public class CityPo implements Serializable {
 		super();
 	}
 
-	public CityPo(Long id, String province, String name, String idXin, String id58, String listXin, String list58) {
+	public CityPo(int id, String province, String name, String listXin, String list58) {
 		this.id = id;
 		this.province = province;
 		this.name = name;
-		this.idXin = idXin;
-		this.id58 = id58;
 		this.listXin = listXin;
 		this.list58 = list58;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -96,22 +82,6 @@ public class CityPo implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getIdXin() {
-		return idXin;
-	}
-
-	public void setIdXin(String idXin) {
-		this.idXin = idXin;
-	}
-
-	public String getId58() {
-		return id58;
-	}
-
-	public void setId58(String id58) {
-		this.id58 = id58;
 	}
 
 	public String getListXin() {
