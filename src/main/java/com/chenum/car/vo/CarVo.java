@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class CarXinVo implements Serializable {
+public class CarVo implements Serializable {
 
 	/**
 	 * 
@@ -12,6 +12,16 @@ public class CarXinVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long id;
+
+	/**
+	 * 应用ID
+	 */
+	private int appId;
+
+	/**
+	 * 应用名称
+	 */
+	private String appName;
 
 	/**
 	 * 创建时间
@@ -57,6 +67,11 @@ public class CarXinVo implements Serializable {
 	 * 个人车源
 	 */
 	private int srcPersonal;
+
+	/**
+	 * VIN码检测 - 58
+	 */
+	private int srcVin;
 
 	/**
 	 * 车龄_一年内
@@ -156,6 +171,22 @@ public class CarXinVo implements Serializable {
 		this.id = id;
 	}
 
+	public int getAppId() {
+		return appId;
+	}
+
+	public void setAppId(int appId) {
+		this.appId = appId;
+	}
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
 	public String getCtime() {
 		return ctime;
 	}
@@ -226,6 +257,14 @@ public class CarXinVo implements Serializable {
 
 	public void setSrcPersonal(int srcPersonal) {
 		this.srcPersonal = srcPersonal;
+	}
+
+	public int getSrcVin() {
+		return srcVin;
+	}
+
+	public void setSrcVin(int srcVin) {
+		this.srcVin = srcVin;
 	}
 
 	public int getAge_1() {

@@ -20,13 +20,14 @@ import com.chenum.car.dao.CityDao;
 import com.chenum.car.po.CarPo;
 import com.chenum.car.po.CityPo;
 import com.chenum.car.type.AgeType;
+import com.chenum.car.type.AppType;
 import com.chenum.car.type.MilageType;
 import com.chenum.car.type.PriceType;
 import com.chenum.car.type.Src58Type;
 
 @Component
 @EnableScheduling
-public class Crawl58Task extends BaseTask {
+public class Crawl58Task extends BaseTask implements Runnable {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Crawl58Task.class);
 	
@@ -44,6 +45,11 @@ public class Crawl58Task extends BaseTask {
 
 	// 0 0 22 * * ?
 	@Scheduled(cron = "${task.crawl.58.cron}")
+	public void task() {
+		es.submit(this);
+	}
+
+	@Override
 	public void run() {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.warn("[Crawl Task 58] " + df.format(new Date()));
@@ -61,7 +67,7 @@ public class Crawl58Task extends BaseTask {
 			logger.info("[Crawl 58 Task DONE] " + city.getName() + " - " + car58);
 		}
 	}
-	
+
 	/**
 	 * 抓取数据
 	 * 
@@ -188,6 +194,7 @@ public class Crawl58Task extends BaseTask {
 			}
 		}
 
+		data.setAppId(AppType.WUBA.getId());
 		data.setCtime(new Date());
 		data.setCityId(city.getId());
 		return data;

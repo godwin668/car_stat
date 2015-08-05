@@ -19,15 +19,15 @@ import com.chenum.car.dao.CityDao;
 import com.chenum.car.po.CarPo;
 import com.chenum.car.po.CityPo;
 import com.chenum.car.type.AgeType;
+import com.chenum.car.type.AppType;
 import com.chenum.car.type.MilageType;
 import com.chenum.car.type.PayXinEnum;
 import com.chenum.car.type.PriceType;
 import com.chenum.car.type.SrcXinType;
-import com.chenum.car.util.CrawlXinUtil;
 
 @Component
 @EnableScheduling
-public class CrawlXinTask extends BaseTask {
+public class CrawlXinTask extends BaseTask implements Runnable {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CrawlXinTask.class);
 	
@@ -42,6 +42,11 @@ public class CrawlXinTask extends BaseTask {
 
 	// 0 0 22 * * ?
 	@Scheduled(cron = "${task.crawl.xin.cron}")
+	public void task() {
+		es.submit(this);
+	}
+
+	@Override
 	public void run() {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.warn("[Crawl Task XIN] " + df.format(new Date()));
@@ -55,7 +60,7 @@ public class CrawlXinTask extends BaseTask {
 		for (CityPo city : cityList) {
 			for (PayXinEnum payType : PayXinEnum.values()) {
 				logger.info("[Crawl Xin Task START] " + city.getName() + " - " + payType.getValue());
-				CarPo carXin = CrawlXinUtil.doCrawl(city, payType);
+				CarPo carXin = doCrawl(city, payType);
 				carDao.save(carXin);
 				logger.info("[Crawl Xin Task DONE] " + city.getName() + " - " + payType.getValue() + " - " + carXin);
 			}
@@ -166,6 +171,7 @@ public class CrawlXinTask extends BaseTask {
 			}
 		}
 
+		data.setAppId(AppType.YOUXIN.getId());
 		data.setCtime(new Date());
 		data.setCityId(city.getId());
 		data.setPay_type(payType.getValue());

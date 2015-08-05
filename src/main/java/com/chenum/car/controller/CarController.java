@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chenum.car.service.CarService;
 import com.chenum.car.service.CityService;
-import com.chenum.car.vo.CarXinVo;
+import com.chenum.car.vo.CarVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -25,9 +25,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Controller
 @RequestMapping("car")
-public class CarXinController {
+public class CarController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(CarXinController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 	private static final ObjectMapper om = new ObjectMapper();
 	
 	@Resource
@@ -36,11 +36,16 @@ public class CarXinController {
 	@Resource
 	private CityService cityService;
 
-	@RequestMapping(value = "")
-	public String page() {
-		return "car/list";
+	@RequestMapping(value = "58")
+	public String page58() {
+		return "car/list58";
 	}
 	
+	@RequestMapping(value = "xin")
+	public String pageXin() {
+		return "car/listXin";
+	}
+
 	/**
 	 * Delete car
 	 */
@@ -58,8 +63,8 @@ public class CarXinController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "get/{id}")
-	public CarXinVo get(Model model, @PathVariable int id) {
-		CarXinVo car = carService.get(id);
+	public CarVo get(Model model, @PathVariable int id) {
+		CarVo car = carService.get(id);
 		return car;
 	}
 
@@ -67,12 +72,13 @@ public class CarXinController {
 	 * list car sum list
 	 */
 	@ResponseBody
-	@RequestMapping(value = "list.json")
-	public List<CarXinVo> listJson(Model model,
+	@RequestMapping(value = "{appId}/list.json")
+	public List<CarVo> listJson(Model model,
+			@PathVariable int appId,
 			@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "city", required = false) String cityId,
 			@RequestParam(value = "type", required = false) String payType) {
-		List<CarXinVo> cars = carService.list(date, ((null != cityId && cityId.matches("\\d+")) ? Integer.valueOf(cityId) : -1), payType);
+		List<CarVo> cars = carService.list(appId, date, ((null != cityId && cityId.matches("\\d+")) ? Integer.valueOf(cityId) : -1), payType);
 		return cars;
 	}
 

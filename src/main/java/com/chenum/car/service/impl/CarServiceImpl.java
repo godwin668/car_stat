@@ -21,7 +21,8 @@ import com.chenum.car.dao.CityDao;
 import com.chenum.car.po.CarPo;
 import com.chenum.car.po.CityPo;
 import com.chenum.car.service.CarService;
-import com.chenum.car.vo.CarXinVo;
+import com.chenum.car.type.AppType;
+import com.chenum.car.vo.CarVo;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -41,13 +42,19 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public CarXinVo get(long id) {
+	public CarVo get(long id) {
 		return convertPo2Vo(carDao.get(id));
 	}
 
 	@Override
-	public List<CarXinVo> list(String date, int cityId, String payType) {
+	public List<CarVo> list(int appId, String date, int cityId, String payType) {
 		List<String> conditions = new ArrayList<String>();
+		// app condition
+		if (appId > 0) {
+			conditions.add("app_id='" + appId + "'");
+		}
+
+		// date condition
 		if (null != date && date.matches("\\d{4}-\\d{2}-\\d{2}")) {
 			try {
 				Date startDate = dfDate.parse(date);
@@ -59,12 +66,14 @@ public class CarServiceImpl implements CarService {
 			}
 		}
 
+		// city condition
 		CityPo city = cityDao.get(cityId);
 		if (null != city) {
 			// append city to query
 			conditions.add("city_id='" + city.getId() + "'");
 		}
 
+		// pay_type condition
 		if ("s".equalsIgnoreCase(payType) || "h".equalsIgnoreCase(payType)) {
 			// append payType to query
 			conditions.add("pay_type='" + payType.toLowerCase() + "'");
@@ -98,14 +107,14 @@ public class CarServiceImpl implements CarService {
 		return strList;
 	}
 
-	public CarXinVo convertPo2Vo(CarPo po) {
+	public CarVo convertPo2Vo(CarPo po) {
 		List<CarPo> poList = new ArrayList<CarPo>();
 		poList.add(po);
 		return convertPo2Vo(poList).get(0);
 	}
 
-	public List<CarXinVo> convertPo2Vo(List<CarPo> poList) {
-		List<CarXinVo> voList = new ArrayList<CarXinVo>();
+	public List<CarVo> convertPo2Vo(List<CarPo> poList) {
+		List<CarVo> voList = new ArrayList<CarVo>();
 		if (null == poList || poList.isEmpty()) {
 			return voList;
 		}
@@ -119,8 +128,10 @@ public class CarServiceImpl implements CarService {
 		}
 
 		for (CarPo po : poList) {
-			CarXinVo vo = new CarXinVo();
+			CarVo vo = new CarVo();
 			vo.setId(po.getId());
+			vo.setAppId(po.getAppId());
+			vo.setAppName(AppType.getById(po.getAppId()).getName());
 			vo.setCtime(df.format(po.getCtime()));
 			vo.setCityId(po.getCityId());
 			int cityXinId = po.getCityId();
@@ -138,6 +149,7 @@ public class CarServiceImpl implements CarService {
 			vo.setSrcOriginal(po.getSrcOriginal());
 			vo.setSrcBySeller(po.getSrcBySeller());
 			vo.setSrcPersonal(po.getSrcPersonal());
+			vo.setSrcVin(po.getSrcVin());
 			vo.setAge_1(po.getAge_1());
 			vo.setAge_1_3(po.getAge_1_3());
 			vo.setAge_3_5(po.getAge_3_5());

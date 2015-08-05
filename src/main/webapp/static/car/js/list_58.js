@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	// load data
 	$('#table-large-columns').bootstrapTable({
-	    url: '/car/list.json',
+	    url: '/car/1/list.json',
 	    silent: true
 	});
 	
@@ -41,7 +41,7 @@ function bindClickEvent() {
 		var dateValue = $('.nav-dropdown-container-date ul li.active').children('a').attr('data-value');
 		var cityValue = $('.nav-dropdown-container-city ul li.active').children('a').attr('data-value');
 		var typeValue = $('.nav-dropdown-container-type ul li.active').children('a').attr('data-value');
-		var newUrl = '/car/list.json?date=' + dateValue + '&city=' + cityValue + '&type=' + typeValue;
+		var newUrl = '/car/1/list.json?date=' + dateValue + '&city=' + cityValue + '&type=' + typeValue;
 		$('#table-large-columns').bootstrapTable('refresh', {silent: true, url: newUrl});
 	});
 }

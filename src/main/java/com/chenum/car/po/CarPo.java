@@ -27,6 +27,12 @@ public class CarPo implements Serializable {
 	private long id;
 
 	/**
+	 * 应用ID
+	 */
+	@Column(name = "app_id", nullable = false)
+	private int appId;
+
+	/**
 	 * 创建时间
 	 */
 	@Column(name = "ctime", nullable = false)
@@ -194,6 +200,14 @@ public class CarPo implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public int getAppId() {
+		return appId;
+	}
+
+	public void setAppId(int appId) {
+		this.appId = appId;
 	}
 
 	public Date getCtime() {

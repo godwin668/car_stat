@@ -9,7 +9,7 @@
     <meta name="author" content="godwin">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Car list</title>
+    <title>Car list - 58</title>
 
     <!-- CSS -->
     <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">优信车源数据统计</a>
+          <a class="navbar-brand" href="#">58二手车数据统计</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -61,15 +61,6 @@
                 <li class="active"><a href="#">全部</a></li>
               </ul>
             </li>
-            <!-- 类型下拉 -->
-            <li class="dropdown nav-dropdown-container nav-dropdown-container-type">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">类型 <span class="caret"></span></a>
-              <ul class="dropdown-menu pre-scrollable">
-                <li class="active"><a href="#">全部</a></li>
-                <li><a href="#" data-value="s">买车</a></li>
-                <li><a href="#" data-value="h">付半价</a></li>
-              </ul>
-            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -84,13 +75,11 @@
               <tr>
                 <th data-field="ctime" data-align="center" >时间</th>
                 <th data-field="cityName" data-align="center" >城市</th>
-                <th data-field="pay_type" data-align="center" >类型</th>
                 
                 <th data-field="srcAll" data-align="center" >全部车源</th>
-                <th data-field="srcNoAccident" data-align="center" >无事故承诺</th>
-                <th data-field="srcOriginal" data-align="center" >原厂质保</th>
-                <th data-field="srcBySeller" data-align="center" >商家质保</th>
-                <th data-field="srcPersonal" data-align="center" >个人车源</th>
+                <th data-field="srcBySeller" data-align="center" >商家</th>
+                <th data-field="srcPersonal" data-align="center" >个人</th>
+                <th data-field="srcVin" data-align="center" >VIN码检测</th>
                 
                 <th data-field="age_1" data-align="center" data-visible="false">1年内</th>
                 <th data-field="age_1_3" data-align="center" data-visible="false">1-3年</th>
@@ -126,6 +115,6 @@
     <script src="/static/jquery/js/jquery-1.11.3.min.js"></script>
     <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
     <script src="/static/bootstrap_table/js/bootstrap-table.min.js"></script>
-    <script src="/static/car/js/list.js"></script>
+    <script src="/static/car/js/list_58.js"></script>
   </body>
 </html>

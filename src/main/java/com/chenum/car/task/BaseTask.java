@@ -3,6 +3,8 @@ package com.chenum.car.task;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
@@ -15,6 +17,8 @@ public class BaseTask {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BaseTask.class);
 	
+	public static final ExecutorService es = Executors.newFixedThreadPool(2);
+
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public static int getSumFromStr(String sum) {
