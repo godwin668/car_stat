@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `city` (
 -- 正在导出表  car.city 的数据：~258 rows (大约)
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
 REPLACE INTO `city` (`id`, `province`, `name`, `list_58`, `list_xin`) VALUES
-	(8728, '全国', '全国', 'quanguo', 'quanguo'),
+	(0, '全国', '全国', 'quanguo', 'quanguo'),
 	(1, '北京', '北京', 'bj', 'beijing'),
 	(2, '上海', '上海', 'sh', 'shanghai'),
 	(3, '广东', '广州', 'gz', 'guangzhou'),
