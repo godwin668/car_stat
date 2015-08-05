@@ -7,9 +7,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,13 +26,12 @@ import com.chenum.car.type.Src58Type;
 
 @Component
 @EnableScheduling
-public class Crawl58Task {
+public class Crawl58Task extends BaseTask {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Crawl58Task.class);
 	
 	private static final String BASE_URL_58 = "http://<city>.58.com/ershouche/";
 	private static final String DOM_SUM_CAR = ".infocont strong";
-	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Resource
 	private CityDao cityDao;
@@ -195,37 +191,5 @@ public class Crawl58Task {
 		data.setCtime(new Date());
 		data.setCityId(city.getId());
 		return data;
-	}
-
-	public static int getSumFromStr(String sum) {
-		if (null != sum && sum.matches("\\d+")) {
-			return Integer.valueOf(sum);
-		} else {
-			return 0;
-		}
-	}
-
-	/**
-	 * get remote html
-	 * 
-	 * @param url
-	 * @param dom
-	 * @return
-	 */
-	public static Elements getRemoteDom(int sleepSeconds, String url, String dom) {
-		try {
-			Thread.sleep(sleepSeconds * 1000);
-			Document doc = Jsoup.connect(url).get();
-			return doc.select(dom);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new Elements();
-		}
-	}
-
-	public static void log(String title, Object msg) {
-		System.out.println("-----------------------");
-		title = StringUtils.isBlank(title) ? "[INFO] - " : "[" + title + "] - ";
-		System.out.println("[" + df.format(new Date()) + "]" + title + msg);
 	}
 }

@@ -9,13 +9,14 @@ import org.jsoup.select.Elements;
 
 import com.chenum.car.po.CarPo;
 import com.chenum.car.po.CityPo;
+import com.chenum.car.task.BaseTask;
 import com.chenum.car.type.AgeType;
 import com.chenum.car.type.MilageType;
 import com.chenum.car.type.PayXinEnum;
 import com.chenum.car.type.PriceType;
 import com.chenum.car.type.SrcXinType;
 
-public class CrawlXinUtil {
+public class CrawlXinUtil extends BaseTask {
 	
 	private static final String BASE_URL_XIN = "http://www.xin.com/";
 	private static final String DOM_SUM_CAR = ".car-upper span em";
@@ -37,8 +38,7 @@ public class CrawlXinUtil {
 		SrcXinType[] cheyuanTypes = SrcXinType.values();
 		for (SrcXinType type : cheyuanTypes) {
 			String cheyuanUrl = buyUrl + "v" + type.getId() + "/";
-			Elements element = JsoupUtil.getRemoteDom(cheyuanUrl,
-					DOM_SUM_CAR);
+			Elements element = getRemoteDom(cheyuanUrl, DOM_SUM_CAR);
 			log("车源_" + type.getName() + "_" + cheyuanUrl,
 					element.html());
 
@@ -60,8 +60,7 @@ public class CrawlXinUtil {
 		AgeType[] chelingTypes = AgeType.values();
 		for (AgeType type : chelingTypes) {
 			String chelingUrl = buyUrl + "r" + type.getIdXin() + "/";
-			Elements element = JsoupUtil.getRemoteDom(chelingUrl,
-					DOM_SUM_CAR);
+			Elements element = getRemoteDom(chelingUrl, DOM_SUM_CAR);
 			log("车龄_" + type.getName() + "_" + chelingUrl,
 					element.html());
 
@@ -83,7 +82,7 @@ public class CrawlXinUtil {
 		MilageType[] lichengTypes = MilageType.values();
 		for (MilageType type : lichengTypes) {
 			String lichengUrl = buyUrl + "k" + type.getIdXin() + "/";
-			Elements element = JsoupUtil.getRemoteDom(lichengUrl, DOM_SUM_CAR);
+			Elements element = getRemoteDom(lichengUrl, DOM_SUM_CAR);
 			log("里程_" + type.getName() + "_" + lichengUrl,
 					element.html());
 
@@ -107,7 +106,7 @@ public class CrawlXinUtil {
 		PriceType[] jiageTypes = PriceType.values();
 		for (PriceType type : jiageTypes) {
 			String jiageUrl = buyUrl + "k" + type.getIdXin() + "/";
-			Elements element = JsoupUtil.getRemoteDom(jiageUrl, DOM_SUM_CAR);
+			Elements element = getRemoteDom(jiageUrl, DOM_SUM_CAR);
 			log("价格_" + type.getName() + "_" + jiageUrl, element.html());
 
 			// set result
