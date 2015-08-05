@@ -10,6 +10,7 @@ import org.jsoup.select.Elements;
 import com.chenum.car.po.CarPo;
 import com.chenum.car.po.CityPo;
 import com.chenum.car.type.AgeType;
+import com.chenum.car.type.MilageType;
 import com.chenum.car.type.PriceType;
 import com.chenum.car.type.Src58Type;
 
@@ -87,6 +88,30 @@ public class Crawl58Util {
 				}
 				log("车龄_" + type.getName() + "_" + type.getId58(), year8Sum);
 				data.setAge_8(year8Sum);
+			}
+		}
+		
+		// 里程
+		// Demo URL: http://bj.58.com/ershouche/?sort=rundistance&rundistance=3_4
+		MilageType[] lichengTypes = MilageType.values();
+		for (MilageType type : lichengTypes) {
+			String lichengUrl = basicUrl + "?sort=rundistance&rundistance=" + type.getId58();
+			Elements element = JsoupUtil.getRemoteDom(lichengUrl, DOM_SUM_CAR);
+			log("里程_" + type.getName() + "_" + lichengUrl, element.html());
+
+			// set result
+			if (MilageType.KM_0_1.equals(type)) {
+				data.setMilage_1(getSumFromStr(element.html()));
+			} else if (MilageType.KM_1_3.equals(type)) {
+				data.setMilage_1_3(getSumFromStr(element.html()));
+			} else if (MilageType.KM_3_6.equals(type)) {
+				data.setMilage_3_6(getSumFromStr(element.html()));
+			} else if (MilageType.KM_6_10.equals(type)) {
+				data.setMilage_6_10(getSumFromStr(element.html()));
+			} else if (MilageType.KM_10_20.equals(type)) {
+				data.setMilage_10_20(getSumFromStr(element.html()));
+			} else if (MilageType.KM_20_.equals(type)) {
+				data.setMilage_20(getSumFromStr(element.html()));
 			}
 		}
 

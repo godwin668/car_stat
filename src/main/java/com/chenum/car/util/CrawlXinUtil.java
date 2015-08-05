@@ -82,9 +82,8 @@ public class CrawlXinUtil {
 		// 里程
 		MilageType[] lichengTypes = MilageType.values();
 		for (MilageType type : lichengTypes) {
-			String lichengUrl = buyUrl + "k" + type.getId() + "/";
-			Elements element = JsoupUtil.getRemoteDom(lichengUrl,
-					DOM_SUM_CAR);
+			String lichengUrl = buyUrl + "k" + type.getIdXin() + "/";
+			Elements element = JsoupUtil.getRemoteDom(lichengUrl, DOM_SUM_CAR);
 			log("里程_" + type.getName() + "_" + lichengUrl,
 					element.html());
 
