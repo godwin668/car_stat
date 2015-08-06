@@ -102,7 +102,8 @@ public class Crawl58Task extends BaseTask implements Runnable {
 				log("车源_" + type.getName() + "_" + cheyuanUrl, element.html());
 				data.setSrcBySeller(getSumFromStr(element.html()));
 			} else if (Src58Type.VIN.equals(type)) {
-				String cheyuanUrl = basicUrl + "?kpjiance=1";
+				// VIN码 Demo URL: http://bj.58.com/ershouche/?param10253=678608&sort=clickrank_desc
+				String cheyuanUrl = basicUrl + "?param10253=678608&sort=clickrank_desc";
 				Elements element = getRemoteDom(sleepSeconds, cheyuanUrl, DOM_SUM_CAR);
 				log("车源_" + type.getName() + "_" + cheyuanUrl, element.html());
 				data.setSrcVin(getSumFromStr(element.html()));
