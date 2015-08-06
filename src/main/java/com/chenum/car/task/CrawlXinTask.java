@@ -27,7 +27,7 @@ import com.chenum.car.type.SrcXinType;
 
 @Component
 @EnableScheduling
-public class CrawlXinTask extends BaseTask implements Runnable {
+public class CrawlXinTask extends BaseTask {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CrawlXinTask.class);
 	
@@ -43,11 +43,6 @@ public class CrawlXinTask extends BaseTask implements Runnable {
 	// 0 0 22 * * ?
 	@Scheduled(cron = "${task.crawl.xin.cron}")
 	public void task() {
-		es.submit(this);
-	}
-
-	@Override
-	public void run() {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.warn("[Crawl Task XIN] " + df.format(new Date()));
 
@@ -59,14 +54,33 @@ public class CrawlXinTask extends BaseTask implements Runnable {
 
 		for (CityPo city : cityList) {
 			for (PayXinEnum payType : PayXinEnum.values()) {
-				logger.info("[Crawl Xin Task START] " + city.getName() + " - " + payType.getValue());
-				CarPo carXin = doCrawl(city, payType);
-				carDao.save(carXin);
-				logger.info("[Crawl Xin Task DONE] " + city.getName() + " - " + payType.getValue() + " - " + carXin);
+				Thread t = new CrawlXinThread(carDao, city, payType);
+				es.submit(t);
 			}
 		}
 	}
 	
+	static class CrawlXinThread extends Thread {
+
+		private CarDao carDao;
+		private CityPo city;
+		private PayXinEnum payType;
+
+		public CrawlXinThread(CarDao carDao, CityPo city, PayXinEnum payType) {
+			this.carDao = carDao;
+			this.city = city;
+			this.payType = payType;
+		}
+
+		@Override
+		public void run() {
+			logger.info("[Crawl Xin Task START] " + city.getName() + " - " + payType.getValue());
+			CarPo carXin = doCrawl(city, payType);
+			carDao.save(carXin);
+			logger.info("[Crawl Xin Task DONE] " + city.getName() + " - " + payType.getValue() + " - " + carXin);
+		}
+	}
+
 	public static CarPo doCrawl(CityPo city, PayXinEnum payType) {
 		CarPo data = new CarPo();
 

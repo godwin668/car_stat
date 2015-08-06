@@ -17,7 +17,7 @@ public class BaseTask {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BaseTask.class);
 	
-	public static final ExecutorService es = Executors.newFixedThreadPool(2);
+	public static final ExecutorService es = Executors.newFixedThreadPool(10);
 
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
