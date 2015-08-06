@@ -36,6 +36,11 @@ public class CarController {
 	@Resource
 	private CityService cityService;
 
+	@RequestMapping(value = "chart")
+	public String chart() {
+		return "car/chart";
+	}
+
 	@RequestMapping(value = "58")
 	public String page58() {
 		return "car/list58";

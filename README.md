@@ -63,6 +63,7 @@
 * Bootstrap(en): http://getbootstrap.com
 * Bootstrap(中): http://www.bootcss.com/
 * bootstrap-table: http://bootstrap-table.wenzhixin.net.cn
+* http://www.chartjs.org/docs
 
 ## 版权
 

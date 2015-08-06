@@ -57,12 +57,7 @@
     
       <div class="container-fluid">
         <div class="row" style="text-align: center;">
-          <br />
-          <br />
-          <h1><a href="/car/58">58二手车数据统计</a></h1>
-          <br />
-          <br />
-          <h1><a href="/car/xin">优信二手车数据统计</a></h1>
+          <canvas id="canvas" style="width: 100%; height: 350px;"></canvas>
         </div>
       </div>
 
@@ -73,5 +68,7 @@
     <script src="/static/jquery/js/jquery-1.11.3.min.js"></script>
     <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
     <script src="/static/bootstrap_table/js/bootstrap-table.min.js"></script>
+    <script src="/static/chart/js/Chart.min.js"></script>
+    <script src="/static/car/js/chart.js"></script>
   </body>
 </html>
