@@ -23,7 +23,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("[INCOMING] Welcome! Client locale {}.", locale);
-		return "car/echart";
+		return "car/map";
 	}
 	
 }
