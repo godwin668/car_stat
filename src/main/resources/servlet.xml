@@ -29,6 +29,10 @@
 	<mvc:annotation-driven />
 	<task:annotation-driven />
 
+	<mvc:interceptors>
+		<bean class="com.chenum.car.interceptor.ConfInterceptor" />
+	</mvc:interceptors>
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/static/" mapping="/static/**" />

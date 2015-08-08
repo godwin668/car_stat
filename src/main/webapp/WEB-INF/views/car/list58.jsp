@@ -115,6 +115,6 @@
     <script src="/static/jquery/js/jquery-1.11.3.min.js"></script>
     <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
     <script src="/static/bootstrap_table/js/bootstrap-table.min.js"></script>
-    <script src="/static/car/js/list_58.js"></script>
+    <script src="/static/car/js/list_58.js?v=${version}"></script>
   </body>
 </html>
