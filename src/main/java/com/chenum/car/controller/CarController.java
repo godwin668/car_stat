@@ -41,6 +41,11 @@ public class CarController {
 		return "car/chart";
 	}
 
+	@RequestMapping(value = "echart")
+	public String eChart() {
+		return "car/echart";
+	}
+
 	@RequestMapping(value = "58")
 	public String page58() {
 		return "car/list58";
