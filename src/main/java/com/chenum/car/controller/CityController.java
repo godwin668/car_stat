@@ -1,17 +1,17 @@
 package com.chenum.car.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chenum.car.po.CityPo;
@@ -34,16 +34,22 @@ public class CityController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "list.json")
-	public Map<String, String> listJson(Model model) {
-		List<CityPo> cityList = cityService.list("");
-		Map<String, String> cityMap = new HashMap<String, String>();
-		if (CollectionUtils.isEmpty(cityList)) {
-			return cityMap;
+	public List<CityPo> listJson(Model model,
+			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "province", required = false) String province,
+			@RequestParam(value = "name", required = false) String name) {
+		List<String> conditionList = new ArrayList<String>();
+		if (null != id && id.matches("\\d+")) {
+			conditionList.add("id=" + id);
 		}
-		for (CityPo city : cityList) {
-			cityMap.put(String.valueOf(city.getId()), city.getName());
+		if (null != province) {
+			conditionList.add("province='" + StringEscapeUtils.escapeSql(province) + "'");
 		}
-		return cityMap;
+		if (null != name) {
+			conditionList.add("name='" + StringEscapeUtils.escapeSql(name) + "'");
+		}
+		List<CityPo> cityList = cityService.list(conditionList);
+		return cityList;
 	}
 
 }

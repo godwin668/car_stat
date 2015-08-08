@@ -2,7 +2,6 @@ package com.chenum.car.dao.impl;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import com.chenum.car.dao.CityDao;
@@ -42,8 +41,14 @@ public class CityDaoImpl extends BaseDaoImpl implements CityDao {
 	}
 
 	@Override
-	public List<CityPo> list(String query) {
-		return (List<CityPo>) getHibernateTemplate().find("from " + CityPo.class.getSimpleName() + (StringUtils.isBlank(query) ? "" : " where " + query));
+	public List<CityPo> list(List<String> conditions) {
+		String query = " where 1=1";
+		if (null != conditions && !conditions.isEmpty()) {
+			for (String condition : conditions) {
+				query += " and (" + condition + ")";
+			}
+		}
+		return (List<CityPo>) getHibernateTemplate().find("from " + CityPo.class.getSimpleName() + query);
 	}
 
 }

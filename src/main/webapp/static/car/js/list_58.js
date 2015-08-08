@@ -8,7 +8,6 @@ $(document).ready(function(){
 	// date
 	$.get('/car/dateList.json', {}, function(data, status) {
 		if ('success' === status) {
-			console.log('dateList: ' + JSON.stringify(data));
 			for (var i = 0; i < data.length; i++) {
 				$('.nav-dropdown-container-date ul').append('<li><a href="#" data-value="' + data[i] + '">' + data[i] + '</a></li>');
 			}
@@ -19,9 +18,8 @@ $(document).ready(function(){
 	// city
 	$.get('/city/list.json', {}, function(data, status) {
 		if ('success' === status) {
-			console.log('cityList: ' + JSON.stringify(data));
-			for (var city in data) {
-				$('.nav-dropdown-container-city ul').append('<li><a href="#" data-value="' + city + '" >' + data[city] + '</a></li>');
+			for (var i = 0; i < data.length; i++) {
+				$('.nav-dropdown-container-city ul').append('<li><a href="#" data-value="' + data[i]['id'] + '" >' + data[i]['name'] + '</a></li>');
 			}
 			bindClickEvent();
 		}

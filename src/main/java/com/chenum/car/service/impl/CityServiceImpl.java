@@ -17,8 +17,8 @@ public class CityServiceImpl implements CityService {
 	private CityDao cityDao;
 
 	@Override
-	public List<CityPo> list(String query) {
-		return cityDao.list("");
+	public List<CityPo> list(List<String> conditions) {
+		return cityDao.list(conditions);
 	}
 
 }

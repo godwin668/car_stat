@@ -25,7 +25,7 @@ public class CityTest {
 
 	@Test
 	public void testList() {
-		List<CityPo> cityList = cityDao.list("");
+		List<CityPo> cityList = cityDao.list(null);
 		System.out.println("city list:");
 		for (CityPo city : cityList) {
 			System.out.println(city.getName());

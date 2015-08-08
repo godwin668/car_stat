@@ -48,6 +48,18 @@ public class CityPo implements Serializable {
 	@Column(name = "list_58", length = 255, nullable = false)
 	private String list58;
 
+	/**
+	 * 经度
+	 */
+	@Column(name = "longitude", length = 20)
+	private float longitude;
+
+	/**
+	 * 纬度
+	 */
+	@Column(name = "latitude", length = 20)
+	private float latitude;
+
 	public CityPo() {
 		super();
 	}
@@ -58,6 +70,16 @@ public class CityPo implements Serializable {
 		this.name = name;
 		this.listXin = listXin;
 		this.list58 = list58;
+	}
+	
+	public CityPo(int id, String province, String name, String listXin, String list58, float longitude, float latitude) {
+		this.id = id;
+		this.province = province;
+		this.name = name;
+		this.listXin = listXin;
+		this.list58 = list58;
+		this.longitude = longitude;
+		this.latitude = latitude;
 	}
 
 	public int getId() {
@@ -98,6 +120,22 @@ public class CityPo implements Serializable {
 
 	public void setList58(String list58) {
 		this.list58 = list58;
+	}
+
+	public float getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
+	}
+
+	public float getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
 	}
 
 	@Override

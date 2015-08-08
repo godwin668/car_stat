@@ -14,6 +14,6 @@ public interface CityDao {
 
 	public CityPo get(int id);
 	
-	public List<CityPo> list(String query);
+	public List<CityPo> list(List<String> conditions);
 
 }

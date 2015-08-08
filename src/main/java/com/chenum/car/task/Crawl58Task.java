@@ -55,7 +55,7 @@ public class Crawl58Task extends BaseTask implements Runnable {
 		logger.warn("[Crawl Task 58] " + df.format(new Date()));
 
 		// get cities
-		List<CityPo> cityList = cityDao.list("");
+		List<CityPo> cityList = cityDao.list(null);
 		if (null == cityList || cityList.isEmpty()) {
 			return;
 		}

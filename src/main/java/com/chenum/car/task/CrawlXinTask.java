@@ -47,7 +47,7 @@ public class CrawlXinTask extends BaseTask {
 		logger.warn("[Crawl Task XIN] " + df.format(new Date()));
 
 		// get cities
-		List<CityPo> cityList = cityDao.list("");
+		List<CityPo> cityList = cityDao.list(null);
 		if (null == cityList || cityList.isEmpty()) {
 			return;
 		}

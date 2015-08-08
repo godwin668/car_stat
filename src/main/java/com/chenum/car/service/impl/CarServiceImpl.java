@@ -119,7 +119,7 @@ public class CarServiceImpl implements CarService {
 			return voList;
 		}
 
-		List<CityPo> cityList = cityDao.list("");
+		List<CityPo> cityList = cityDao.list(null);
 		Map<Integer, String> cityNameMap = new HashMap<Integer, String>();
 		if (null != cityList && !cityList.isEmpty()) {
 			for (CityPo city : cityList) {

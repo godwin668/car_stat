@@ -6,6 +6,6 @@ import com.chenum.car.po.CityPo;
 
 public interface CityService {
 
-	public List<CityPo> list(String query);
+	public List<CityPo> list(List<String> condition);
 
 }
