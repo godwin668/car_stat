@@ -1,11 +1,16 @@
 package com.chenum.car.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -29,6 +34,8 @@ public class CarController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 	private static final ObjectMapper om = new ObjectMapper();
+	private static final DateFormat dfDateNoHyphen = new SimpleDateFormat("yyyyMMdd");
+	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	@Resource
 	private CarService carService;
@@ -41,9 +48,9 @@ public class CarController {
 		return "car/chart";
 	}
 
-	@RequestMapping(value = "echart")
+	@RequestMapping(value = "trend")
 	public String eChart() {
-		return "car/echart";
+		return "car/trend";
 	}
 
 	@RequestMapping(value = "58")
@@ -80,15 +87,61 @@ public class CarController {
 
 	/**
 	 * list car sum list
+	 * 
+	 * @param model
+	 * @param appId
+	 * @param date
+	 *            date=20150809 or date=,20150809 or date=20150809, or
+	 *            date=20150809,20150810
+	 * @param cityId
+	 * @param payType
+	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "{appId}/list.json")
 	public List<CarVo> listJson(Model model,
 			@PathVariable int appId,
 			@RequestParam(value = "date", required = false) String date,
+			@RequestParam(value = "sdate", required = false) String sdate,
+			@RequestParam(value = "edate", required = false) String edate,
 			@RequestParam(value = "city", required = false) String cityId,
 			@RequestParam(value = "type", required = false) String payType) {
-		List<CarVo> cars = carService.list(appId, date, ((null != cityId && cityId.matches("\\d+")) ? Integer.valueOf(cityId) : -1), payType);
+		List<String> conditionList = new ArrayList<String>();
+		if (null != date && date.matches("\\d+")) {
+			try {
+				Date startDate = dfDateNoHyphen.parse(date);
+				Date endDate = DateUtils.addDays(startDate, 1);
+				// append date to query
+				conditionList.add("ctime>'" + df.format(startDate) + "' and ctime<'" + df.format(endDate) + "'");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (null != sdate && sdate.matches("\\d+")) {
+			try {
+				Date startDate = dfDateNoHyphen.parse(sdate);
+				conditionList.add("ctime>'" + df.format(startDate) + "'");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (null != edate && edate.matches("\\d+")) {
+			try {
+				Date endDate = dfDateNoHyphen.parse(edate);
+				conditionList.add("ctime<'" + df.format(endDate) + "'");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (null != cityId && cityId.matches("\\d+")) {
+			conditionList.add("city_id='" + cityId + "'");
+		}
+		if ("s".equalsIgnoreCase(payType) || "h".equalsIgnoreCase(payType)) {
+			// append payType to query
+			conditionList.add("pay_type='" + payType.toLowerCase() + "'");
+		}
+
+		List<CarVo> cars = carService.list(appId, conditionList);
 		return cars;
 	}
 

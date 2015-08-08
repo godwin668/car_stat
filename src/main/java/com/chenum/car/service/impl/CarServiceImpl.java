@@ -13,7 +13,6 @@ import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import com.chenum.car.dao.CarDao;
@@ -33,7 +32,7 @@ public class CarServiceImpl implements CarService {
 	@Resource
 	private CityDao cityDao;
 
-	private static final DateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd");
+	private static final DateFormat dfDateNoHyphen = new SimpleDateFormat("yyyyMMdd");
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Override
@@ -47,48 +46,13 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<CarVo> list(int appId, String date, int cityId, String payType) {
-		List<String> conditions = new ArrayList<String>();
-		// app condition
-		if (appId > 0) {
-			conditions.add("app_id='" + appId + "'");
-		}
-
-		// date condition
-		if (null != date && date.matches("\\d{4}-\\d{2}-\\d{2}")) {
-			try {
-				Date startDate = dfDate.parse(date);
-				Date endDate = DateUtils.addDays(startDate, 1);
-				// append date to query
-				conditions.add("ctime>'" + df.format(startDate) + "' and ctime<'" + df.format(endDate) + "'");
-			} catch (Exception e) {
-				e.printStackTrace();
+	public List<CarVo> list(int appId, List<String> conditions) {
+		String query = " where 1=1";
+		if (null != conditions && !conditions.isEmpty()) {
+			for (String condition : conditions) {
+				query += " and (" + condition + ")";
 			}
 		}
-
-		// city condition
-		CityPo city = cityDao.get(cityId);
-		if (null != city) {
-			// append city to query
-			conditions.add("city_id='" + city.getId() + "'");
-		}
-
-		// pay_type condition
-		if ("s".equalsIgnoreCase(payType) || "h".equalsIgnoreCase(payType)) {
-			// append payType to query
-			conditions.add("pay_type='" + payType.toLowerCase() + "'");
-		}
-		
-		String query = "";
-		if (!conditions.isEmpty()) {
-			for (int i = 0; i < conditions.size(); i++) {
-				if (i == 0) {
-					query += " where 1=1 ";
-				}
-				query += " and (" + conditions.get(i) + ")";
-			}
-		}
-		
 		return convertPo2Vo(carDao.list(query));
 	}
 
@@ -101,7 +65,7 @@ public class CarServiceImpl implements CarService {
 		}
 		Set<String> set = new TreeSet<String>(Collections.reverseOrder());
 		for (Date date : dateList) {
-			set.add(dfDate.format(date));
+			set.add(dfDateNoHyphen.format(date));
 		}
 		strList.addAll(set);
 		return strList;

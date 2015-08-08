@@ -3,7 +3,7 @@
  */
 // yesterday
 var yesterday = new Date().setDate(new Date().getDate() - 1);
-var yesterdayStr = $.format.date(yesterday, "yyyy-MM-dd");
+var yesterdayStr = $.format.date(yesterday, "yyyyMMdd");
 
 //城市经纬度Map
 var cityCoordMap = {};
