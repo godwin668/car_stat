@@ -97,6 +97,7 @@ public class CarServiceImpl implements CarService {
 			vo.setAppId(po.getAppId());
 			vo.setAppName(AppType.getById(po.getAppId()).getName());
 			vo.setCtime(df.format(po.getCtime()));
+			vo.setCdate(dfDateNoHyphen.format(po.getCtime()));
 			vo.setCityId(po.getCityId());
 			int cityXinId = po.getCityId();
 			if (null != cityNameMap && !cityNameMap.isEmpty() && cityNameMap.containsKey(cityXinId)) {

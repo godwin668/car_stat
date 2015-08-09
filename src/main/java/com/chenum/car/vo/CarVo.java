@@ -29,6 +29,11 @@ public class CarVo implements Serializable {
 	private String ctime;
 
 	/**
+	 * 创建日期
+	 */
+	private String cdate;
+
+	/**
 	 * 城市ID
 	 */
 	private int cityId;
@@ -193,6 +198,14 @@ public class CarVo implements Serializable {
 
 	public void setCtime(String ctime) {
 		this.ctime = ctime;
+	}
+
+	public String getCdate() {
+		return cdate;
+	}
+
+	public void setCdate(String cdate) {
+		this.cdate = cdate;
 	}
 
 	public int getCityId() {

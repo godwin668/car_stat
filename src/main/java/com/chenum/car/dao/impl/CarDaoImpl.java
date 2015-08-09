@@ -1,7 +1,5 @@
 package com.chenum.car.dao.impl;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,8 +11,6 @@ import com.chenum.car.po.CarPo;
 
 @Repository
 public class CarDaoImpl extends BaseDaoImpl implements CarDao {
-
-	private static final DateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Override
 	public CarPo save(CarPo car) {
