@@ -127,5 +127,6 @@
     <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
     <script src="/static/bootstrap_table/js/bootstrap-table.min.js"></script>
     <script src="/static/car/js/list_xin.js?v=${version}"></script>
+    <script src="/static/car/js/stat.js?v=${version}"></script>
   </body>
 </html>

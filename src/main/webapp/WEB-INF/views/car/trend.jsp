@@ -72,6 +72,7 @@
     <script src="/static/bootstrap_table/js/bootstrap-table.min.js"></script>
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     <script src="/static/dateFormat/js/jquery-dateFormat.min.js"></script>
-    <script src="/static/car/js/trend.js"></script>
+    <script src="/static/car/js/trend.js?v=${version}"></script>
+    <script src="/static/car/js/stat.js?v=${version}"></script>
   </body>
 </html>
