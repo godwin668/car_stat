@@ -47,7 +47,7 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public List<CarVo> list(int appId, List<String> conditions) {
-		String query = " where 1=1";
+		String query = " where 1=1 and (app_id=" + appId + ")";
 		if (null != conditions && !conditions.isEmpty()) {
 			for (String condition : conditions) {
 				query += " and (" + condition + ")";

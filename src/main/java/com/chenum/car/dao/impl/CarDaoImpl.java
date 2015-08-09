@@ -44,7 +44,7 @@ public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 
 	@Override
 	public List<CarPo> list(String whereClause) {
-		List<CarPo> list = (List<CarPo>) getHibernateTemplate().find("from " + CarPo.class.getSimpleName() + whereClause);
+		List<CarPo> list = (List<CarPo>) getHibernateTemplate().find("from " + CarPo.class.getSimpleName() + whereClause + " order by ctime desc");
 		return list;
 	}
 

@@ -43,11 +43,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <!-- 标题栏
-            <li class="active"><a href="#">日期</a></li>
-            <li><a href="#about">城市</a></li>
-            <li><a href="#contact">类型</a></li>
-            -->
+            <li><a href="/car/58">58二手车数据统计</a></li>
+            <li><a href="/car/xin">优信二手车数据统计</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -64,12 +61,12 @@
             <div id="chart-container-xin" style="height: 400px;"></div>
           </div>
         </div>
+        <br />
+        <br />
+        <br />
         <div class="row" style="text-align: center;">
-          <div class="col-md-6">
-            <h3><a href="/car/58">58二手车数据统计</a></h3>
-          </div>
-          <div class="col-md-6">
-            <h3><a href="/car/xin">优信二手车数据统计</a></h3>
+          <div class="col-md-12">
+            <div id="chart-container-trend" style="width: 100%; height: 400px;"></div>
           </div>
         </div>
       </div>
