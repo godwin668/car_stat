@@ -62,7 +62,7 @@
           </div>
         </div>
         <br />
-        <br />
+        <hr />
         <br />
         <div class="row" style="text-align: center;">
           <div class="col-md-12">
