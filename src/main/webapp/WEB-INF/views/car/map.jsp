@@ -10,7 +10,7 @@
     <meta name="author" content="godwin668@gmail.com">
     <link rel="icon" href="/favicon.ico">
 
-    <title>全国二手车数据统计分析</title>
+    <title>全国二手车数据统计分析系统</title>
 
     <!-- CSS -->
     <link href="/static/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
