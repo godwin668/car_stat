@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,7 @@ import com.chenum.car.type.SrcXinType;
 
 @Component
 @EnableScheduling
-public class CrawlXinTask extends BaseTask {
+public class CrawlXinTask extends BaseTask implements Runnable {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CrawlXinTask.class);
 	
@@ -40,9 +41,17 @@ public class CrawlXinTask extends BaseTask {
 	@Resource
 	private CarDao carDao;
 
+	@Value("${task.crawl.xin.freq}")
+	private int sleepSeconds;
+
 	// 0 0 22 * * ?
 	@Scheduled(cron = "${task.crawl.xin.cron}")
 	public void task() {
+		es.submit(this);
+	}
+
+	@Override
+	public void run() {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.warn("[Crawl Task XIN] " + df.format(new Date()));
 
@@ -54,34 +63,15 @@ public class CrawlXinTask extends BaseTask {
 
 		for (CityPo city : cityList) {
 			for (PayXinEnum payType : PayXinEnum.values()) {
-				Thread t = new CrawlXinThread(carDao, city, payType);
-				es.submit(t);
+				logger.info("[Crawl Xin Task START] " + city.getName() + " - " + payType.getValue());
+				CarPo carXin = doCrawl(sleepSeconds, city, payType);
+				carDao.save(carXin);
+				logger.info("[Crawl Xin Task DONE] " + city.getName() + " - " + payType.getValue() + " - " + carXin);
 			}
 		}
 	}
-	
-	static class CrawlXinThread extends Thread {
 
-		private CarDao carDao;
-		private CityPo city;
-		private PayXinEnum payType;
-
-		public CrawlXinThread(CarDao carDao, CityPo city, PayXinEnum payType) {
-			this.carDao = carDao;
-			this.city = city;
-			this.payType = payType;
-		}
-
-		@Override
-		public void run() {
-			logger.info("[Crawl Xin Task START] " + city.getName() + " - " + payType.getValue());
-			CarPo carXin = doCrawl(city, payType);
-			carDao.save(carXin);
-			logger.info("[Crawl Xin Task DONE] " + city.getName() + " - " + payType.getValue() + " - " + carXin);
-		}
-	}
-
-	public static CarPo doCrawl(CityPo city, PayXinEnum payType) {
+	public static CarPo doCrawl(int sleepSeconds, CityPo city, PayXinEnum payType) {
 		CarPo data = new CarPo();
 
 		// city
@@ -97,7 +87,7 @@ public class CrawlXinTask extends BaseTask {
 		SrcXinType[] cheyuanTypes = SrcXinType.values();
 		for (SrcXinType type : cheyuanTypes) {
 			String cheyuanUrl = buyUrl + "v" + type.getId() + "/";
-			Elements element = getRemoteDom(cheyuanUrl, DOM_SUM_CAR);
+			Elements element = getRemoteDom(sleepSeconds, cheyuanUrl, DOM_SUM_CAR);
 			log("车源_" + type.getName() + "_" + cheyuanUrl,
 					element.html());
 
@@ -119,7 +109,7 @@ public class CrawlXinTask extends BaseTask {
 		AgeType[] chelingTypes = AgeType.values();
 		for (AgeType type : chelingTypes) {
 			String chelingUrl = buyUrl + "r" + type.getIdXin() + "/";
-			Elements element = getRemoteDom(chelingUrl, DOM_SUM_CAR);
+			Elements element = getRemoteDom(sleepSeconds, chelingUrl, DOM_SUM_CAR);
 			log("车龄_" + type.getName() + "_" + chelingUrl,
 					element.html());
 
@@ -141,7 +131,7 @@ public class CrawlXinTask extends BaseTask {
 		MilageType[] lichengTypes = MilageType.values();
 		for (MilageType type : lichengTypes) {
 			String lichengUrl = buyUrl + "k" + type.getIdXin() + "/";
-			Elements element = getRemoteDom(lichengUrl, DOM_SUM_CAR);
+			Elements element = getRemoteDom(sleepSeconds, lichengUrl, DOM_SUM_CAR);
 			log("里程_" + type.getName() + "_" + lichengUrl, element.html());
 
 			// set result
@@ -164,7 +154,7 @@ public class CrawlXinTask extends BaseTask {
 		PriceType[] jiageTypes = PriceType.values();
 		for (PriceType type : jiageTypes) {
 			String jiageUrl = buyUrl + "k" + type.getIdXin() + "/";
-			Elements element = getRemoteDom(jiageUrl, DOM_SUM_CAR);
+			Elements element = getRemoteDom(sleepSeconds, jiageUrl, DOM_SUM_CAR);
 			log("价格_" + type.getName() + "_" + jiageUrl, element.html());
 
 			// set result
