@@ -50,7 +50,11 @@ public class BaseTask {
 	public static Elements getRemoteDom(int sleepSeconds, String url, String dom) {
 		try {
 			Thread.sleep(sleepSeconds * 1000);
-			Document doc = Jsoup.connect(url).get();
+			Document doc = Jsoup
+					.connect(url)
+					.userAgent(
+							"Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+					.referrer("http://www.baidu.com").get();
 			return doc.select(dom);
 		} catch (Exception e) {
 			e.printStackTrace();
