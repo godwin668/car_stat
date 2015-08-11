@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.chenum.car.dao.CarDao;
@@ -28,9 +27,9 @@ import com.chenum.car.type.SrcXinType;
 
 @Component
 @EnableScheduling
-public class CrawlXinTask extends BaseTask implements Runnable {
+public class CrawlXinSleepTask extends BaseTask implements Runnable {
 	
-	private static final Logger logger = LoggerFactory.getLogger(CrawlXinTask.class);
+	private static final Logger logger = LoggerFactory.getLogger(CrawlXinSleepTask.class);
 	
 	private static final String BASE_URL_XIN = "http://www.xin.com/";
 	private static final String DOM_SUM_CAR = ".car-upper span em";
@@ -45,7 +44,7 @@ public class CrawlXinTask extends BaseTask implements Runnable {
 	private int sleepSeconds;
 
 	// 0 0 22 * * ?
-	@Scheduled(cron = "${task.crawl.xin.cron}")
+	// @Scheduled(cron = "${task.crawl.xin.cron}")
 	public void task() {
 		es.submit(this);
 	}
