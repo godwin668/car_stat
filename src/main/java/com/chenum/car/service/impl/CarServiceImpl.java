@@ -13,6 +13,7 @@ import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import com.chenum.car.dao.CarDao;
@@ -34,6 +35,8 @@ public class CarServiceImpl implements CarService {
 
 	private static final DateFormat dfDateNoHyphen = new SimpleDateFormat("yyyyMMdd");
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static Date lastCacheTime = new Date();
+	private static List<String> dateListCache = new ArrayList<String>();
 
 	@Override
 	public void delete(long id) {
@@ -58,17 +61,20 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public List<String> listDate() {
-		List<Date> dateList = carDao.listDate();
-		List<String> strList = new ArrayList<String>();
-		if (null == dateList || dateList.isEmpty()) {
-			return strList;
+		Date lastHourDate = DateUtils.addHours(new Date(), -1);
+		if (dateListCache.isEmpty() || lastHourDate.after(lastHourDate)) {
+			List<Date> dateList = carDao.listDate();
+			List<String> strList = new ArrayList<String>();
+			if (null != dateList && !dateList.isEmpty()) {
+				Set<String> set = new TreeSet<String>(Collections.reverseOrder());
+				for (Date date : dateList) {
+					set.add(dfDateNoHyphen.format(date));
+				}
+				strList.addAll(set);
+				dateListCache = strList;
+			}
 		}
-		Set<String> set = new TreeSet<String>(Collections.reverseOrder());
-		for (Date date : dateList) {
-			set.add(dfDateNoHyphen.format(date));
-		}
-		strList.addAll(set);
-		return strList;
+		return dateListCache;
 	}
 
 	public CarVo convertPo2Vo(CarPo po) {

@@ -191,4 +191,12 @@ public class CrawlXinTaskNoSleep extends BaseTask {
 		data.setPay_type(payType.getValue());
 		return data;
 	}
+
+	public static void main(String[] args) {
+		CityPo city = new CityPo(0, "全国", "全国", "quanguo", "quanguo");
+		PayXinEnum payType = PayXinEnum.SALE;
+		CarPo car = doCrawl(city, payType);
+		System.out.println("-------------");
+		System.out.println(car);
+	}
 }

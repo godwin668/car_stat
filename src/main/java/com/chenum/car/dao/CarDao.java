@@ -17,6 +17,8 @@ public interface CarDao {
 
 	public List<CarPo> list(String whereClause);
 
+	public Date getOldestDate();
+
 	public List<Date> listDate();
 
 }

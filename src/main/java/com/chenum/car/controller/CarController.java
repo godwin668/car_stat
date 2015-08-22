@@ -133,6 +133,11 @@ public class CarController {
 				e.printStackTrace();
 			}
 		}
+		if (null == conditionList || conditionList.isEmpty()) {
+			Date threeDaysAgo = DateUtils.addDays(new Date(), -3);
+			conditionList.add("ctime>'" + df.format(threeDaysAgo) + "'");
+		}
+
 		if (null != cityId && cityId.matches("\\d+")) {
 			conditionList.add("city_id='" + cityId + "'");
 		}
