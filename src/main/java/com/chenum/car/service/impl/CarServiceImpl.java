@@ -63,16 +63,21 @@ public class CarServiceImpl implements CarService {
 	public List<String> listDate() {
 		Date lastHourDate = DateUtils.addHours(new Date(), -1);
 		if (dateListCache.isEmpty() || lastHourDate.after(lastHourDate)) {
-			List<Date> dateList = carDao.listDate();
+			Date oldestDate = carDao.getOldestDate();
+			Date tomorrow = DateUtils.addDays(new Date(), 1);
+			Date stepDate = oldestDate;
 			List<String> strList = new ArrayList<String>();
-			if (null != dateList && !dateList.isEmpty()) {
-				Set<String> set = new TreeSet<String>(Collections.reverseOrder());
-				for (Date date : dateList) {
-					set.add(dfDateNoHyphen.format(date));
+			Set<String> set = new TreeSet<String>(Collections.reverseOrder());
+			while (stepDate.before(tomorrow)) {
+				if (DateUtils.isSameDay(stepDate, tomorrow)) {
+					break;
+				} else {
+					set.add(dfDateNoHyphen.format(stepDate));
+					stepDate = DateUtils.addDays(stepDate, 1);
 				}
-				strList.addAll(set);
-				dateListCache = strList;
 			}
+			strList.addAll(set);
+			dateListCache = strList;
 		}
 		return dateListCache;
 	}

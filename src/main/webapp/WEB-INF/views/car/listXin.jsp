@@ -51,7 +51,7 @@
             <li class="dropdown nav-dropdown-container nav-dropdown-container-date">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">日期 <span class="caret"></span></a>
               <ul class="dropdown-menu pre-scrollable">
-                <li class="active"><a href="#">全部</a></li>
+                <li class="active"><a href="#">三天内</a></li>
               </ul>
             </li>
             <!-- 城市下拉 -->

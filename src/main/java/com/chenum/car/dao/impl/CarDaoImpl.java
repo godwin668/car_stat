@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.chenum.car.dao.CarDao;
@@ -50,7 +51,9 @@ public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 	
 	@Override
 	public Date getOldestDate() {
-		List<CarPo> list = (List<CarPo>) getHibernateTemplate().find("from " + CarPo.class.getSimpleName() + " order by ctime desc limit 1");
+		HibernateTemplate template = getHibernateTemplate();
+		template.setMaxResults(1);
+		List<CarPo> list = (List<CarPo>) template.find("from " + CarPo.class.getSimpleName() + " order by ctime");
 		if (null != list && !list.isEmpty()) {
 			return list.get(0).getCtime();
 		} else {
