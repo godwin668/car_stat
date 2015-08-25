@@ -64,12 +64,12 @@ public class CarServiceImpl implements CarService {
 		Date lastHourDate = DateUtils.addHours(new Date(), -1);
 		if (dateListCache.isEmpty() || lastHourDate.after(lastHourDate)) {
 			Date oldestDate = carDao.getOldestDate();
-			Date tomorrow = DateUtils.addDays(new Date(), 1);
+			Date today = new Date();
 			Date stepDate = oldestDate;
 			List<String> strList = new ArrayList<String>();
 			Set<String> set = new TreeSet<String>(Collections.reverseOrder());
-			while (stepDate.before(tomorrow)) {
-				if (DateUtils.isSameDay(stepDate, tomorrow)) {
+			while (stepDate.before(today)) {
+				if (DateUtils.isSameDay(stepDate, today)) {
 					break;
 				} else {
 					set.add(dfDateNoHyphen.format(stepDate));

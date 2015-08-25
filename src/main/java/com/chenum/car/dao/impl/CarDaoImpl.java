@@ -52,7 +52,6 @@ public class CarDaoImpl extends BaseDaoImpl implements CarDao {
 	@Override
 	public Date getOldestDate() {
 		HibernateTemplate template = getHibernateTemplate();
-		template.setMaxResults(1);
 		List<CarPo> list = (List<CarPo>) template.find("from " + CarPo.class.getSimpleName() + " order by ctime");
 		if (null != list && !list.isEmpty()) {
 			return list.get(0).getCtime();
