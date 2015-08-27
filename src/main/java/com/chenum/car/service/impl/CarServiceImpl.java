@@ -62,7 +62,7 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<String> listDate() {
 		Date lastHourDate = DateUtils.addHours(new Date(), -1);
-		if (dateListCache.isEmpty() || lastHourDate.after(lastHourDate)) {
+		if (dateListCache.isEmpty() || lastHourDate.after(lastCacheTime)) {
 			Date oldestDate = carDao.getOldestDate();
 			Date today = new Date();
 			Date stepDate = oldestDate;
@@ -78,6 +78,7 @@ public class CarServiceImpl implements CarService {
 			}
 			strList.addAll(set);
 			dateListCache = strList;
+			lastCacheTime = new Date();
 		}
 		return dateListCache;
 	}
